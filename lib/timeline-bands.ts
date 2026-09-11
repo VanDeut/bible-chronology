@@ -25,7 +25,7 @@ export interface LaneMetrics {
 }
 
 /** Padding above the first lane of each band. */
-export const BAND_HEADER_HEIGHT = 6;
+export const BAND_HEADER_HEIGHT = 14;
 /** Gap between consecutive bands. */
 export const BAND_GAP = 4;
 /** Bands never get shorter than this so the vertical name label stays readable. */
