@@ -133,6 +133,12 @@ function eventsOverlap(a: TimelineEvent, b: TimelineEvent): boolean {
   const aEnd = getEventEndDayIndex(a);
   const bStart = getEventStartDayIndex(b);
   const bEnd = getEventEndDayIndex(b);
+  // Two ranges that merely touch (one ends the day the next begins, e.g.
+  // successive kingdoms) can share a lane; anything involving a point needs
+  // the inclusive test so a pin on a boundary day still gets its own row.
+  if (!isPointEvent(a) && !isPointEvent(b)) {
+    return aStart < bEnd && bStart < aEnd;
+  }
   return aStart <= bEnd && bStart <= aEnd;
 }
 
@@ -158,9 +164,17 @@ function assignLanes(
     if (!metrics) continue;
 
     const point = isPointEvent(event);
+    // Range widths include one extra day of pixels so a bar reaches the end
+    // of its last day; trim it here so abutting bars do not read as colliding.
     const hitRect = point
       ? getPointLaneHitRect(metrics.x, metrics.width, pixelsPerDay)
-      : { left: metrics.x, right: metrics.x + metrics.width };
+      : {
+          left: metrics.x,
+          right: Math.max(
+            metrics.x + 1,
+            metrics.x + metrics.width - pixelsPerDay
+          ),
+        };
 
     let assigned = -1;
     for (let i = 0; i < lanes.length; i++) {

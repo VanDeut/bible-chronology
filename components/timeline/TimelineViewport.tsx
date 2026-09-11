@@ -12,7 +12,7 @@ import {
 import { isPointEvent, LABEL_ZOOM_THRESHOLD } from "@/lib/timeline-point-hit";
 import { usesFeaturedCircle } from "@/lib/featured-marker-size";
 import { getPrimaryCategoryId } from "@/lib/event-categories";
-import { BAND_HEADER_HEIGHT, type BandGeometry } from "@/lib/timeline-bands";
+import type { BandGeometry } from "@/lib/timeline-bands";
 import { colorWithAlpha } from "@/lib/color-utils";
 import { TimelineGrid } from "./TimelineGrid";
 import { BackgroundSpan } from "./BackgroundSpan";
@@ -158,21 +158,6 @@ export const TimelineViewport = memo(function TimelineViewport({
                 borderTop: `1px solid ${colorWithAlpha(color, 0.55)}`,
               }}
             >
-              <span
-                className="sticky left-2 inline-flex items-center gap-1.5 rounded-full bg-[var(--surface)] px-2 text-[11px] font-medium text-[var(--foreground)] shadow-sm"
-                style={{
-                  marginTop: (BAND_HEADER_HEIGHT - 16) / 2,
-                  height: 16,
-                  boxShadow: `0 0 0 1px ${colorWithAlpha(color, 0.6)}`,
-                }}
-              >
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: color }}
-                  aria-hidden
-                />
-                {category?.name ?? "Uncategorized"}
-              </span>
             </div>
           );
         })}
@@ -215,6 +200,41 @@ export const TimelineViewport = memo(function TimelineViewport({
               floatTier={floatTier}
               labelRow={labelRow}
             />
+          );
+        })}
+      </div>
+
+      {/* Band names: sticky in both axes so they stay visible while panning
+          and while scrolling down through a tall band. */}
+      <div
+        className="pointer-events-none absolute left-0 right-0 z-[15]"
+        style={{ top: eventsTop }}
+      >
+        {layout.bands.map((band, i) => {
+          const geo = bandGeometry[i];
+          if (!geo) return null;
+          const category = categoryById.get(band.key);
+          const color = category?.color ?? "#6366f1";
+          const name = category?.name ?? "Uncategorized";
+          return (
+            <div
+              key={band.key}
+              className="absolute left-0 right-0"
+              style={{ top: geo.top, height: geo.height }}
+            >
+              <span
+                className="font-serif sticky left-1 top-2 inline-block max-h-[calc(100%-16px)] overflow-hidden text-ellipsis whitespace-nowrap rounded-md bg-[var(--surface)] px-0.5 py-1.5 text-[10.5px] font-medium tracking-wide text-[var(--foreground)]"
+                style={{
+                  marginTop: 8,
+                  writingMode: "vertical-rl",
+                  transform: "rotate(180deg)",
+                  boxShadow: `0 0 0 1px ${colorWithAlpha(color, 0.6)}`,
+                }}
+                title={name}
+              >
+                {name}
+              </span>
+            </div>
           );
         })}
       </div>

@@ -141,3 +141,23 @@ describe("timeline-layout bands", () => {
     expect(layout.laneCount).toBe(2);
   });
 });
+
+describe("timeline-layout abutting ranges", () => {
+  it("lets a range that starts the day another ends share its lane", () => {
+    const now = "2024-01-01T00:00:00.000Z";
+    const range = (id: string, start: string, end: string): TimelineEvent => ({
+      id, title: id, startDate: start, endDate: end, notes: "",
+      categoryIds: ["cat-default"], links: [], createdAt: now, updatedAt: now,
+    });
+    const layout = computeTimelineLayout(
+      [
+        range("babylon", "-0625-01-01", "-0539-01-01"),
+        range("persia", "-0539-01-01", "-0332-01-01"),
+        range("greece", "-0332-01-01", "-0030-01-01"),
+      ],
+      [],
+      0.05
+    );
+    expect(layout.events.every((e) => e.lane === 0)).toBe(true);
+  });
+});

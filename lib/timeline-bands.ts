@@ -22,10 +22,12 @@ export interface LaneMetrics {
   compact: number;
 }
 
-/** Space reserved at the top of each band for the category name label. */
-export const BAND_HEADER_HEIGHT = 20;
+/** Padding above the first lane of each band. */
+export const BAND_HEADER_HEIGHT = 6;
 /** Gap between consecutive bands. */
 export const BAND_GAP = 4;
+/** Bands never get shorter than this so the vertical name label stays readable. */
+export const MIN_BAND_HEIGHT = 72;
 
 export function computeBandGeometry(
   bands: LayoutBand[],
@@ -55,7 +57,10 @@ export function computeBandGeometry(
 
     const top = cursor;
     const eventsTop = top + header + featuredPad;
-    const height = header + featuredPad + lanesHeight;
+    const height = Math.max(
+      header + featuredPad + lanesHeight + header,
+      MIN_BAND_HEIGHT
+    );
     result.push({ top, eventsTop, height, laneTops });
     cursor = top + height + BAND_GAP;
   }
