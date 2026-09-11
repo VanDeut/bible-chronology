@@ -43,11 +43,21 @@ export const BandGutter = memo(function BandGutter({
     >
       {bands.map((band, i) => {
         const geo = bandGeometry[i];
-        if (!geo || geo.hidden) return null;
+        if (!geo) return null;
         const category = categoryById.get(band.key);
         const color = category?.color ?? "#6366f1";
         const name = category?.name ?? "Uncategorized";
         const top = eventsTop + geo.top - scrollTop;
+        if (geo.hidden) {
+          return (
+            <div
+              key={band.key}
+              className="absolute left-0 right-0"
+              title={`${name} — no events in view`}
+              style={{ top, height: geo.height, backgroundColor: colorWithAlpha(color, 0.4) }}
+            />
+          );
+        }
         const label = geo.collapsed ? `Expand ${name}` : `Collapse ${name}`;
         // Keep the name in view while scrolling through a tall band: slide it
         // down with the viewport until it reaches the band's bottom.

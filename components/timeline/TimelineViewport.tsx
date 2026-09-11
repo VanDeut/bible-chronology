@@ -213,18 +213,19 @@ export const TimelineViewport = memo(function TimelineViewport({
       >
         {layout.bands.map((band, i) => {
           const geo = bandGeometry[i];
-          if (!geo || geo.hidden) return null;
+          if (!geo) return null;
           const category = categoryById.get(band.key);
           const color = category?.color ?? "#6366f1";
           return (
             <div
               key={band.key}
               className="absolute left-0 right-0"
+              title={geo.hidden ? `${category?.name ?? "Uncategorized"} — no events in view` : undefined}
               style={{
                 top: geo.top,
                 height: geo.height,
-                backgroundColor: colorWithAlpha(color, 0.14),
-                borderTop: `1px solid ${colorWithAlpha(color, 0.55)}`,
+                backgroundColor: colorWithAlpha(color, geo.hidden ? 0.4 : 0.14),
+                borderTop: geo.hidden ? undefined : `1px solid ${colorWithAlpha(color, 0.55)}`,
               }}
             >
               {geo.collapsed && (

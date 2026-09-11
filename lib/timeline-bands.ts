@@ -15,7 +15,7 @@ export interface BandGeometry {
   laneTops: number[];
   /** Folded to a thin strip of tick marks. */
   collapsed: boolean;
-  /** No events in the current viewport window: band takes no space at all. */
+  /** No events in the current viewport window: drawn as a thin line only. */
   hidden: boolean;
 }
 
@@ -34,6 +34,8 @@ export const BAND_GAP = 4;
 export const MIN_BAND_HEIGHT = 84;
 /** Height of a collapsed band. */
 export const COLLAPSED_BAND_HEIGHT = 26;
+/** Height of a band with no events in the current window (a thin colored line). */
+export const HIDDEN_BAND_HEIGHT = 4;
 
 /** Approximate px per character of the vertical band label (10.5px serif). */
 export const BAND_LABEL_PX_PER_CHAR = 6.8;
@@ -68,11 +70,12 @@ export function computeBandGeometry(
       result.push({
         top: cursor,
         eventsTop: cursor,
-        height: 0,
+        height: HIDDEN_BAND_HEIGHT,
         laneTops: [0],
         collapsed: false,
         hidden: true,
       });
+      cursor += HIDDEN_BAND_HEIGHT + BAND_GAP;
       continue;
     }
     if (isCollapsed(band.key)) {
