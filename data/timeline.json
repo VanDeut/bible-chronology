@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-11T19:30:32.207Z",
+  "exportedAt": "2026-09-11T19:30:47.274Z",
   "data": {
     "events": [
       {
@@ -2471,6 +2471,13 @@
         "updatedAt": "2026-09-11T19:01:43.995Z"
       },
       {
+        "id": "07a404f7-4096-4c19-b157-7fc06a648b77",
+        "name": "World Power",
+        "color": "#84cc16",
+        "createdAt": "2026-09-11T19:23:37.434Z",
+        "updatedAt": "2026-09-11T19:23:37.434Z"
+      },
+      {
         "id": "fe850126-c72c-4cdd-a01a-857c0677be56",
         "name": "Bible Book Time Period",
         "color": "#ef4444",
@@ -2497,13 +2504,6 @@
         "color": "#06b6d4",
         "createdAt": "2026-09-11T19:23:37.433Z",
         "updatedAt": "2026-09-11T19:23:37.433Z"
-      },
-      {
-        "id": "07a404f7-4096-4c19-b157-7fc06a648b77",
-        "name": "World Power",
-        "color": "#84cc16",
-        "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T19:23:37.434Z"
       },
       {
         "id": "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb",
