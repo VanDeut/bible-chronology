@@ -3,6 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTimelineStore } from "@/lib/store";
 import { useActiveView } from "@/lib/use-active-view";
+import { collectLineage } from "@/lib/lineage";
+import { getEventCategoryIds } from "@/lib/event-categories";
+import { getEventStartDayIndex } from "@/lib/date-utils";
 import type { TimelineView } from "@/lib/types";
 import type { useHiddenCategories } from "@/lib/use-hidden-categories";
 import type { useCollapsedBands } from "@/lib/use-collapsed-bands";
@@ -25,7 +28,7 @@ function buildPresets(categories: { id: string; name: string }[]): Preset[] {
   const presets: Preset[] = [
     { id: "preset:all", name: "Everything", hiddenCategoryIds: [], collapsedBandIds: [] },
   ];
-  const kingdoms = byName(/kingdom|world power|prophet/i);
+  const kingdoms = byName(/kingdom|world power|prophet|^person/i);
   if (kingdoms.length > 0) {
     presets.push({
       id: "preset:kings",
@@ -71,6 +74,7 @@ export function ViewsMenu({
   const lineageRootEventId = useActiveView((s) => s.lineageRootEventId);
   const setActiveView = useActiveView((s) => s.setActiveView);
   const setLineageRoot = useActiveView((s) => s.setLineageRoot);
+  const requestJump = useActiveView((s) => s.requestJump);
 
   const [open, setOpen] = useState(false);
   const [naming, setNaming] = useState(false);
@@ -105,6 +109,22 @@ export function ViewsMenu({
     setLineageRoot(view.lineageRootEventId ?? null);
     setActiveView(view.id);
     setOpen(false);
+
+    // Take the user to the earliest event the view shows.
+    const hidden = new Set(view.hiddenCategoryIds);
+    const lineage = view.lineageRootEventId
+      ? collectLineage(events, view.lineageRootEventId)
+      : null;
+    const shown = events.filter(
+      (e) =>
+        getEventCategoryIds(e).some((id) => !hidden.has(id)) &&
+        (!lineage || lineage.has(e.id))
+    );
+    if (shown.length === 0) return;
+    const first = shown.reduce((a, b) =>
+      getEventStartDayIndex(b) < getEventStartDayIndex(a) ? b : a
+    );
+    requestJump(getEventStartDayIndex(first));
   };
 
   const saveCurrent = () => {

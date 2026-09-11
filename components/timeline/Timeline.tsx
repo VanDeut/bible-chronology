@@ -228,6 +228,25 @@ export function Timeline({ categoryVisibility, collapsedBands }: TimelineProps) 
 
   useDragPan({ containerRef: scrollRef });
 
+  // A view was applied: center on its first event once this layout (with the
+  // new filter and therefore new bounds) has been committed.
+  const pendingJumpDay = useActiveView((s) => s.pendingJumpDay);
+  const clearJump = useActiveView((s) => s.clearJump);
+  useEffect(() => {
+    if (pendingJumpDay == null || viewportWidth <= 0) return;
+    const x =
+      dateToX(pendingJumpDay, layout.timelineStartDay, layout.pixelsPerDay) -
+      viewportWidth / 2;
+    const maxScroll = Math.max(0, layout.totalWidth - viewportWidth);
+    const target = Math.max(0, Math.min(x, maxScroll));
+    const el = scrollRef.current;
+    if (el) {
+      el.scrollLeft = target;
+      scrollStore.setScrollLeft(target);
+    }
+    clearJump();
+  }, [pendingJumpDay, layout, viewportWidth, scrollStore, clearJump]);
+
   const applyZoom = useCallback(
     (nextPixelsPerDay: number) => {
       const el = scrollRef.current;
