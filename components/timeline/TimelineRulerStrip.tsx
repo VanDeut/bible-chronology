@@ -15,6 +15,7 @@ interface TimelineRulerStripProps {
   events: TimelineEvent[];
   categories: Category[];
   className?: string;
+  onJumpToDay?: (dayIndex: number) => void;
 }
 
 /** Date ruler pinned above the scroll canvas; syncs to the timeline scroll container. */
@@ -25,6 +26,7 @@ export const TimelineRulerStrip = memo(function TimelineRulerStrip({
   events,
   categories,
   className = "",
+  onJumpToDay,
 }: TimelineRulerStripProps) {
   const scrollLeft = useElementScrollLeft(scrollRef);
   const width =
@@ -73,6 +75,7 @@ export const TimelineRulerStrip = memo(function TimelineRulerStrip({
           totalWidth={layout.totalWidth}
           scrollLeft={scrollLeft}
           viewportWidth={width}
+          onJumpToDay={onJumpToDay}
         />
         <FeaturedRulerMarkers
           markers={featuredMarkers}

@@ -417,6 +417,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
         events={filteredEvents}
         categories={categories}
         className="order-3"
+        onJumpToDay={scrollToDayIndex}
       />
     </div>
   );

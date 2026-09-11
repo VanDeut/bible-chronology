@@ -11,6 +11,7 @@ import {
 } from "@/lib/date-utils";
 import { getAdMarkerX } from "@/lib/timeline-ticks";
 import { getMinimapYearMarkers } from "@/lib/minimap-year-markers";
+import { useTimelineStore } from "@/lib/store";
 import { colorWithAlpha } from "@/lib/color-utils";
 import { getPrimaryCategoryId } from "@/lib/event-categories";
 
@@ -71,6 +72,14 @@ export const TimelineMinimap = memo(function TimelineMinimap({
     },
     [timelineStartDay, totalDays, totalWidth, viewportWidth, onScrollTo]
   );
+
+  const detailItem = useTimelineStore((s) => s.detailItem);
+  const selectedDay =
+    detailItem?.type === "event"
+      ? getEventStartDayIndex(detailItem.data)
+      : detailItem?.type === "background"
+        ? getDateDayIndex(detailItem.data.startDate)
+        : null;
 
   if (totalDays <= 0 || totalWidth <= 0) return null;
 
@@ -185,6 +194,16 @@ export const TimelineMinimap = memo(function TimelineMinimap({
             className="absolute top-4 h-6 w-px bg-amber-500/80"
             style={{ left: `${adPct}%` }}
           />
+        )}
+
+        {selectedDay != null && (
+          <div
+            className="pointer-events-none absolute top-4 z-[5] h-6 w-0.5 -translate-x-1/2 bg-[var(--foreground)]"
+            style={{ left: `${scale(selectedDay - timelineStartDay)}%` }}
+            aria-hidden
+          >
+            <span className="absolute -top-0.5 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-full rotate-45 rounded-[1px] bg-[var(--foreground)] shadow ring-1 ring-[var(--surface)]" />
+          </div>
         )}
 
         <MinimapViewport
