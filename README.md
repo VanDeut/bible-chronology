@@ -11,6 +11,7 @@ A personal, offline-first timeline web app for biblical/historical events — no
 - Categories with colors; show/hide via **Filter** or the collapsible legend
 - **Scripture references** per event (e.g. `Gen 5:3; 1 Ki 2:1-4`) linked to the New World Translation on jw.org
 - **Related events** — link an event to a parent/successor/cause; a dashed connector is drawn between them
+- **Views** — presets (Everything, Kings & prophets, People only, First century), a **family line** filter that shows only the events linked to a selected one, and **saved views** (filter + collapsed bands + family line) that sync with your data
 - Click a band name to **collapse** it to a tick strip; click a ruler year to center on it; phones get a tap preview card
 - **Category bands** — events are grouped into horizontal bands by primary category (band order = Category manager order; hidden categories collapse their band). Multi-category events pick a **primary** category in the event form
 - Visible-event culling for large timelines

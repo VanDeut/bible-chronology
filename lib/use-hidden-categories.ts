@@ -53,8 +53,17 @@ export function useHiddenCategories() {
     [persist]
   );
 
+  const setHidden = useCallback(
+    (ids: string[]) => {
+      setHiddenCategoryIds(ids);
+      persist(ids);
+    },
+    [persist]
+  );
+
   return {
     hiddenCategoryIds,
+    setHidden,
     loaded,
     toggleCategory,
     isCategoryVisible,

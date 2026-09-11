@@ -51,10 +51,23 @@ export function getBackgroundImageOpacity(background: Background): number {
   );
 }
 
+/** A saved way of looking at the timeline: which bands show, which fold, and an optional family line. */
+export interface TimelineView {
+  id: string;
+  name: string;
+  hiddenCategoryIds: string[];
+  collapsedBandIds: string[];
+  /** Restrict to the family/related-event line containing this event. */
+  lineageRootEventId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface TimelineData {
   events: TimelineEvent[];
   backgrounds: Background[];
   categories: Category[];
+  views?: TimelineView[];
 }
 
 export type DetailItem =
@@ -72,6 +85,7 @@ export function createEmptyData(): TimelineData {
   return {
     events: [],
     backgrounds: [],
+    views: [],
     categories: DEFAULT_CATEGORIES.map((c) => ({
       ...c,
       createdAt: now,
@@ -101,9 +115,21 @@ export function normalizeTimelineData(data: TimelineData): TimelineData {
     )
   );
 
+  const eventIds = new Set(events.map((e) => e.id));
+  const views = (data.views ?? []).map((v) => ({
+    ...v,
+    hiddenCategoryIds: v.hiddenCategoryIds.filter((id) => validCategoryIds.has(id)),
+    collapsedBandIds: v.collapsedBandIds.filter((id) => validCategoryIds.has(id)),
+    lineageRootEventId:
+      v.lineageRootEventId && eventIds.has(v.lineageRootEventId)
+        ? v.lineageRootEventId
+        : undefined,
+  }));
+
   return {
     events,
     backgrounds: data.backgrounds ?? [],
     categories,
+    views,
   };
 }

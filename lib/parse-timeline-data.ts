@@ -4,6 +4,7 @@ import type {
   Category,
   TimelineData,
   TimelineEvent,
+  TimelineView,
 } from "./types";
 import {
   getBackgroundImageOpacity,
@@ -194,9 +195,31 @@ export function parseTimelineData(raw: unknown): {
     .map((item) => parseCategory(item, warnings))
     .filter((item): item is Category => item != null);
 
+  const views = (Array.isArray(payload.views) ? payload.views : [])
+    .map((item) => parseView(item))
+    .filter((item): item is TimelineView => item != null);
+
   return {
-    data: normalizeTimelineData({ events, backgrounds, categories }),
+    data: normalizeTimelineData({ events, backgrounds, categories, views }),
     warnings,
+  };
+}
+
+function parseView(raw: unknown): TimelineView | null {
+  if (!isRecord(raw)) return null;
+  const id = asString(raw.id);
+  const name = asString(raw.name).trim();
+  const createdAt = asString(raw.createdAt);
+  const updatedAt = asString(raw.updatedAt);
+  if (!id || !name || !createdAt || !updatedAt) return null;
+  return {
+    id,
+    name,
+    hiddenCategoryIds: asStringArray(raw.hiddenCategoryIds),
+    collapsedBandIds: asStringArray(raw.collapsedBandIds),
+    lineageRootEventId: asOptionalString(raw.lineageRootEventId),
+    createdAt,
+    updatedAt,
   };
 }
 

@@ -8,6 +8,7 @@ import { getCategoryById } from "@/lib/merge";
 import { getEventCategoryIds } from "@/lib/event-categories";
 import { parseScriptureRefs } from "@/lib/scripture";
 import { getTimelineController } from "@/lib/timeline-controller";
+import { useActiveView } from "@/lib/use-active-view";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { DetailImage } from "../ui/DetailImage";
 import { showToast } from "@/lib/use-toast";
@@ -27,6 +28,8 @@ export function DetailPanel({ item, onClose, onEdit }: DetailPanelProps) {
   const categories = useTimelineStore((s) => s.data.categories);
   const allEvents = useTimelineStore((s) => s.data.events);
   const setDetailItem = useTimelineStore((s) => s.setDetailItem);
+  const setLineageRoot = useActiveView((s) => s.setLineageRoot);
+  const setActiveView = useActiveView((s) => s.setActiveView);
   const deleteEvent = useTimelineStore((s) => s.deleteEvent);
   const deleteBackground = useTimelineStore((s) => s.deleteBackground);
   const restoreEvent = useTimelineStore((s) => s.restoreEvent);
@@ -186,6 +189,17 @@ export function DetailPanel({ item, onClose, onEdit }: DetailPanelProps) {
 
           {(relatedEvents.length > 0 || linkedFrom.length > 0) && (
             <DetailSection title="Related events">
+              <button
+                type="button"
+                onClick={() => {
+                  setLineageRoot(event.id);
+                  setActiveView(`lineage:${event.id}`);
+                  onClose();
+                }}
+                className="mb-2 w-full rounded-lg border border-indigo-400/60 px-2.5 py-1.5 text-sm font-medium text-indigo-500 hover:bg-indigo-500/10"
+              >
+                Show only this family line
+              </button>
               <ul className="space-y-1">
                 {[...relatedEvents, ...linkedFrom].map((rel) => (
                   <li key={rel.id}>

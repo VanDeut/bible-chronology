@@ -34,6 +34,7 @@ export function mergeTimelineData(
     events: mergeItem(local.events, remote.events),
     backgrounds: mergeItem(local.backgrounds, remote.backgrounds),
     categories: mergeItem(local.categories, remote.categories),
+    views: mergeItem(local.views ?? [], remote.views ?? []),
   };
 }
 

@@ -23,6 +23,7 @@ import {
 } from "./TimelineEventBlock";
 import { TimelineCursor } from "./TimelineCursor";
 import { useTimelineStore } from "@/lib/store";
+import { useActiveView } from "@/lib/use-active-view";
 
 interface TimelineViewportProps {
   scrollRef: React.RefObject<HTMLDivElement | null>;
@@ -59,6 +60,8 @@ export const TimelineViewport = memo(function TimelineViewport({
 }: TimelineViewportProps) {
   const scrollLeft = useElementScrollLeft(scrollRef);
   const setDetailItem = useTimelineStore((s) => s.setDetailItem);
+  // Family-line view: connectors are the point, so draw them solid and bolder.
+  const lineageMode = useActiveView((s) => s.lineageRootEventId != null);
 
   const visibleEvents = useMemo(
     () => filterVisibleEvents(layout, scrollLeft, viewportWidth),
@@ -248,9 +251,9 @@ export const TimelineViewport = memo(function TimelineViewport({
               d={line.d}
               fill="none"
               stroke={line.color}
-              strokeWidth={1.5}
-              strokeDasharray="3 3"
-              strokeOpacity={0.85}
+              strokeWidth={lineageMode ? 2 : 1.5}
+              strokeDasharray={lineageMode ? undefined : "3 3"}
+              strokeOpacity={lineageMode ? 1 : 0.85}
             />
           ))}
         </svg>

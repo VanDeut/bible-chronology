@@ -20,6 +20,7 @@ import { Toaster } from "./ui/Toaster";
 import { EmptyState } from "./EmptyState";
 import { useTimelineStore } from "@/lib/store";
 import { useHiddenCategories } from "@/lib/use-hidden-categories";
+import { useCollapsedBands } from "@/lib/use-collapsed-bands";
 import { useAppearanceSettings } from "@/lib/use-appearance-settings";
 import { useKeyboardShortcuts } from "@/lib/use-keyboard-shortcuts";
 import { startSyncListeners } from "@/lib/github-sync";
@@ -47,6 +48,7 @@ export function AppShell() {
   const eventCount = useTimelineStore((s) => s.data.events.length);
   const backgroundCount = useTimelineStore((s) => s.data.backgrounds.length);
   const categoryVisibility = useHiddenCategories();
+  const collapsedBands = useCollapsedBands();
   const appearance = useAppearanceSettings();
 
   const isEmpty = isLoaded && eventCount === 0 && backgroundCount === 0;
@@ -76,10 +78,17 @@ export function AppShell() {
 
   return (
     <div className="flex h-dvh flex-col">
-      <Header onOpenModal={openModal} categoryVisibility={categoryVisibility} />
+      <Header
+        onOpenModal={openModal}
+        categoryVisibility={categoryVisibility}
+        collapsedBands={collapsedBands}
+      />
 
       <main className="relative min-h-0 min-w-0 flex-1">
-        <Timeline categoryVisibility={categoryVisibility} />
+        <Timeline
+          categoryVisibility={categoryVisibility}
+          collapsedBands={collapsedBands}
+        />
         <EventPreviewCard />
         {isEmpty && (
           <EmptyState

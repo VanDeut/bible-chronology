@@ -31,10 +31,19 @@ export function useCollapsedBands() {
     });
   }, []);
 
+  const setCollapsed = useCallback((ids: string[]) => {
+    setCollapsedIds(ids);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   const isBandCollapsed = useCallback(
     (categoryId: string) => collapsedIds.includes(categoryId),
     [collapsedIds]
   );
 
-  return { collapsedIds, toggleBand, isBandCollapsed };
+  return { collapsedIds, setCollapsed, toggleBand, isBandCollapsed };
 }

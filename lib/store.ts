@@ -6,6 +6,7 @@ import type {
   Background,
   Category,
   DetailItem,
+  TimelineView,
 } from "./types";
 import { DEFAULT_CATEGORY_ID } from "./event-categories";
 import { createEmptyData, normalizeTimelineData } from "./types";
@@ -49,6 +50,9 @@ interface TimelineStore {
   moveCategory: (id: string, direction: -1 | 1) => void;
 
   findOrAddCategory: (name: string) => string;
+
+  addView: (view: Omit<TimelineView, "id" | "createdAt" | "updatedAt">) => string;
+  deleteView: (id: string) => void;
 
   importData: (data: TimelineData, mode: "replace" | "merge") => void;
   exportData: () => TimelineData;
@@ -282,6 +286,21 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
     const color = colors[get().data.categories.length % colors.length];
     get().addCategory({ name: trimmed, color });
     return get().data.categories[get().data.categories.length - 1].id;
+  },
+
+  addView: (view) => {
+    const now = new Date().toISOString();
+    const newView: TimelineView = { ...view, id: uuidv4(), createdAt: now, updatedAt: now };
+    set((s) => ({ data: { ...s.data, views: [...(s.data.views ?? []), newView] } }));
+    get().persist();
+    return newView.id;
+  },
+
+  deleteView: (id) => {
+    set((s) => ({
+      data: { ...s.data, views: (s.data.views ?? []).filter((v) => v.id !== id) },
+    }));
+    get().persist();
   },
 
   importData: (data, mode) => {

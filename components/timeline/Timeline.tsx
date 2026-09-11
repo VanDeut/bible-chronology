@@ -19,7 +19,9 @@ import {
   isEventVisibleForCategories,
 } from "@/lib/event-categories";
 import { computeBandGeometry, totalBandsHeight } from "@/lib/timeline-bands";
-import { useCollapsedBands } from "@/lib/use-collapsed-bands";
+import type { useCollapsedBands } from "@/lib/use-collapsed-bands";
+import { useActiveView } from "@/lib/use-active-view";
+import { collectLineage } from "@/lib/lineage";
 import {
   getEventStartDayIndex,
   dateToX,
@@ -47,6 +49,7 @@ type CategoryVisibility = ReturnType<typeof useHiddenCategories>;
 
 interface TimelineProps {
   categoryVisibility: CategoryVisibility;
+  collapsedBands: ReturnType<typeof useCollapsedBands>;
 }
 
 const COMPACT_BREAKPOINT = 640;
@@ -74,7 +77,7 @@ function getTimelineMetrics(viewportWidth: number, pixelsPerDay: number) {
   };
 }
 
-export function Timeline({ categoryVisibility }: TimelineProps) {
+export function Timeline({ categoryVisibility, collapsedBands }: TimelineProps) {
   const events = useTimelineStore((s) => s.data.events);
   const backgrounds = useTimelineStore((s) => s.data.backgrounds);
   const categories = useTimelineStore((s) => s.data.categories);
@@ -83,13 +86,18 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
 
   const { loaded: categoriesLoaded, isCategoryVisible } = categoryVisibility;
 
-  const filteredEvents = useMemo(
-    () =>
-      categoriesLoaded
-        ? events.filter((e) => isEventVisibleForCategories(e, isCategoryVisible))
-        : events,
-    [events, categoriesLoaded, isCategoryVisible]
+  const lineageRootEventId = useActiveView((s) => s.lineageRootEventId);
+  const lineageIds = useMemo(
+    () => (lineageRootEventId ? collectLineage(events, lineageRootEventId) : null),
+    [events, lineageRootEventId]
   );
+
+  const filteredEvents = useMemo(() => {
+    const byCategory = categoriesLoaded
+      ? events.filter((e) => isEventVisibleForCategories(e, isCategoryVisible))
+      : events;
+    return lineageIds ? byCategory.filter((e) => lineageIds.has(e.id)) : byCategory;
+  }, [events, categoriesLoaded, isCategoryVisible, lineageIds]);
 
   const [pixelsPerDay, setPixelsPerDay] = useState(DEFAULT_PIXELS_PER_DAY);
   const [viewportWidth, setViewportWidth] = useState(0);
@@ -140,7 +148,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
     return map;
   }, [categories]);
 
-  const { toggleBand, isBandCollapsed } = useCollapsedBands();
+  const { toggleBand, isBandCollapsed } = collapsedBands;
   const bandGeometry = useMemo(
     () =>
       computeBandGeometry(

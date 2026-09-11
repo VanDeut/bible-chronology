@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { useTimelineController } from "@/lib/timeline-controller";
 import { useFocusTrap } from "@/lib/use-focus-trap";
 import { CategoryFilterMenu } from "./CategoryFilterMenu";
+import { ViewsMenu } from "./ViewsMenu";
 import type { ModalType } from "./AppShell";
 import type { useHiddenCategories } from "@/lib/use-hidden-categories";
+import type { useCollapsedBands } from "@/lib/use-collapsed-bands";
 import { useGitHubSync } from "@/lib/github-sync";
 
 type CategoryVisibility = ReturnType<typeof useHiddenCategories>;
@@ -13,12 +15,13 @@ type CategoryVisibility = ReturnType<typeof useHiddenCategories>;
 interface HeaderProps {
   onOpenModal: (modal: ModalType) => void;
   categoryVisibility: CategoryVisibility;
+  collapsedBands: ReturnType<typeof useCollapsedBands>;
 }
 
 const headerButtonClass =
   "rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--foreground)] transition hover:bg-[var(--background)] active:scale-[0.98] whitespace-nowrap sm:text-sm";
 
-export function Header({ onOpenModal, categoryVisibility }: HeaderProps) {
+export function Header({ onOpenModal, categoryVisibility, collapsedBands }: HeaderProps) {
   const controller = useTimelineController();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -82,6 +85,12 @@ export function Header({ onOpenModal, categoryVisibility }: HeaderProps) {
           >
             + Background
           </HeaderButton>
+
+          <ViewsMenu
+            categoryVisibility={categoryVisibility}
+            collapsedBands={collapsedBands}
+            buttonClassName={`${headerButtonClass} inline-flex items-center`}
+          />
 
           <CategoryFilterMenu
             categoryVisibility={categoryVisibility}
