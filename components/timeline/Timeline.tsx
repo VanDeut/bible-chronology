@@ -132,6 +132,14 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
   } = metrics;
   const BACKGROUND_HEIGHT = BACKGROUND_ROW_HEIGHT * layout.backgroundRowCount;
 
+  const categoryById = useMemo(() => {
+    const map = new Map<string, Category>();
+    for (const category of categories) {
+      map.set(category.id, category);
+    }
+    return map;
+  }, [categories]);
+
   const { toggleBand, isBandCollapsed } = useCollapsedBands();
   const bandGeometry = useMemo(
     () =>
@@ -140,20 +148,21 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
         layout.pixelsPerDay,
         { full: LANE_HEIGHT, compact: COMPACT_LANE_HEIGHT },
         true,
-        isBandCollapsed
+        isBandCollapsed,
+        (key) => categoryById.get(key)?.name ?? ""
       ),
-    [layout.bands, layout.pixelsPerDay, LANE_HEIGHT, COMPACT_LANE_HEIGHT, isBandCollapsed]
+    [
+      layout.bands,
+      layout.pixelsPerDay,
+      LANE_HEIGHT,
+      COMPACT_LANE_HEIGHT,
+      isBandCollapsed,
+      categoryById,
+    ]
   );
 
   const EVENTS_TOP = BACKGROUND_HEIGHT;
 
-  const categoryById = useMemo(() => {
-    const map = new Map<string, Category>();
-    for (const category of categories) {
-      map.set(category.id, category);
-    }
-    return map;
-  }, [categories]);
 
   const totalDays = layout.timelineEndDay - layout.timelineStartDay;
   const zoomMin = minPixelsPerDay(totalDays, viewportWidth);

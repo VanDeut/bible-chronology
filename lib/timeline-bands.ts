@@ -33,12 +33,25 @@ export const MIN_BAND_HEIGHT = 84;
 /** Height of a collapsed band. */
 export const COLLAPSED_BAND_HEIGHT = 26;
 
+/** Approximate px per character of the vertical band label (10.5px serif). */
+export const BAND_LABEL_PX_PER_CHAR = 6.8;
+/** Vertical label columns the gutter can hold side by side. */
+export const BAND_LABEL_MAX_COLUMNS = 3;
+
+/** Shortest band that can show `name` in the gutter without clipping. */
+export function minBandHeightForName(name: string): number {
+  const textLength = name.length * BAND_LABEL_PX_PER_CHAR + 16;
+  const perColumn = Math.ceil(textLength / BAND_LABEL_MAX_COLUMNS);
+  return Math.max(MIN_BAND_HEIGHT, perColumn + 2 * BAND_HEADER_HEIGHT);
+}
+
 export function computeBandGeometry(
   bands: LayoutBand[],
   pixelsPerDay: number,
   lane: LaneMetrics,
   showHeaders: boolean,
-  isCollapsed: (key: string) => boolean = () => false
+  isCollapsed: (key: string) => boolean = () => false,
+  nameOf: (key: string) => string = () => ""
 ): BandGeometry[] {
   const diameter = getFeaturedCircleDiameter(pixelsPerDay);
   const labelFont = getFeaturedLabelFontSize(diameter);
@@ -78,7 +91,7 @@ export function computeBandGeometry(
     const eventsTop = top + header + featuredPad;
     const height = Math.max(
       header + featuredPad + lanesHeight + header,
-      MIN_BAND_HEIGHT
+      minBandHeightForName(nameOf(band.key))
     );
     result.push({ top, eventsTop, height, laneTops, collapsed: false });
     cursor = top + height + BAND_GAP;

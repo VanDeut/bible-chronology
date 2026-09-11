@@ -5,8 +5,12 @@ import type { Category } from "@/lib/types";
 import type { LayoutBand } from "@/lib/timeline-layout";
 import type { BandGeometry } from "@/lib/timeline-bands";
 import { colorWithAlpha } from "@/lib/color-utils";
+import {
+  BAND_LABEL_MAX_COLUMNS,
+  BAND_LABEL_PX_PER_CHAR,
+} from "@/lib/timeline-bands";
 
-export const BAND_GUTTER_WIDTH = 44;
+export const BAND_GUTTER_WIDTH = 52;
 
 interface BandGutterProps {
   bands: LayoutBand[];
@@ -47,9 +51,15 @@ export const BandGutter = memo(function BandGutter({
         const label = geo.collapsed ? `Expand ${name}` : `Collapse ${name}`;
         // Keep the name in view while scrolling through a tall band: slide it
         // down with the viewport until it reaches the band's bottom.
-        const columns = Math.ceil((name.length * 6.6 + 14) / (geo.height - 16));
-        const estimatedLength =
-          columns <= 1 ? name.length * 6.6 + 14 : geo.height - 16;
+        const textLength = name.length * BAND_LABEL_PX_PER_CHAR + 16;
+        const columns = Math.min(
+          BAND_LABEL_MAX_COLUMNS,
+          Math.max(1, Math.ceil(textLength / (geo.height - 16)))
+        );
+        const estimatedLength = Math.min(
+          geo.height - 16,
+          Math.ceil(textLength / columns)
+        );
         const hiddenAbove = Math.max(0, -top);
         const labelOffset = Math.min(
           hiddenAbove + 8,
@@ -88,7 +98,7 @@ export const BandGutter = memo(function BandGutter({
                 style={{
                   writingMode: "vertical-rl",
                   transform: "rotate(180deg)",
-                  // Two vertical columns max; longer names clip (full name in title).
+                  // Up to three vertical columns; band min height guarantees fit.
                   maxWidth: BAND_GUTTER_WIDTH - 8,
                   boxShadow: `0 0 0 1px ${colorWithAlpha(color, 0.6)}`,
                 }}
