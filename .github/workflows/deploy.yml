@@ -29,7 +29,9 @@ jobs:
 
       - run: npm run build
         env:
-          # Custom domain at site root (timeline.vndtkm.com). For github.io/<repo>/ only, set GITHUB_PAGES: true.
+          # Hosted at <user>.github.io/<repo>/ — sets basePath/assetPrefix in next.config.ts.
+          # Remove GITHUB_PAGES to serve from a custom domain at the site root instead.
+          GITHUB_PAGES: "true"
           # Required: repository secret APP_PASSWORD (Settings → Secrets → Actions).
           NEXT_PUBLIC_APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
 
