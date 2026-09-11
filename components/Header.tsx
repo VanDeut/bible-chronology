@@ -66,6 +66,15 @@ export function Header({ onOpenModal, categoryVisibility, collapsedBands }: Head
     <header className="z-20 shrink-0 border-b border-[var(--border)] bg-[var(--surface)]">
       <div className="flex items-center justify-between gap-2 px-3 py-2 sm:px-4">
         <div className="flex min-w-0 items-center gap-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/icons/icon-192.png`}
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7 shrink-0 rounded-md"
+            draggable={false}
+          />
           <h1 className="font-serif truncate text-lg font-semibold tracking-tight sm:text-xl">
             Bible Chronology
           </h1>

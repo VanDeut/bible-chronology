@@ -1,5 +1,6 @@
-const CACHE_NAME = "timeline-shell-v2";
-const STATIC_ASSETS = ["/", "/manifest.json"];
+const CACHE_NAME = "timeline-shell-v3";
+// Relative to the service-worker scope so the app also works under a sub-path.
+const STATIC_ASSETS = ["./", "./manifest.json"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

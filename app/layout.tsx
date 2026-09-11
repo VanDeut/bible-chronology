@@ -15,10 +15,19 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "Bible Chronology",
   description: "Personal biblical timeline",
-  manifest: "/manifest.json",
+  manifest: `${basePath}/manifest.json`,
+  icons: {
+    icon: [
+      { url: `${basePath}/favicon.ico`, sizes: "any" },
+      { url: `${basePath}/icons/favicon-32.png`, type: "image/png", sizes: "32x32" },
+    ],
+    apple: `${basePath}/icons/apple-touch-icon.png`,
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -41,9 +50,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="modern">
-      <head>
-        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-      </head>
       <body className={`${sourceSerif.variable} ${dmSans.variable} antialiased`}>
         {children}
         <ServiceWorkerRegister />
