@@ -31,6 +31,7 @@ import {
 import { TimelineMinimap } from "./TimelineMinimap";
 import { TimelineRulerStrip } from "./TimelineRulerStrip";
 import { TimelineViewport } from "./TimelineViewport";
+import { BandGutter, BAND_GUTTER_WIDTH } from "./BandGutter";
 import { CategoryLegend } from "../CategoryLegend";
 import { usePinchZoom, type ZoomAnchor } from "./usePinchZoom";
 import { useDragPan } from "./useDragPan";
@@ -92,6 +93,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
   const [pixelsPerDay, setPixelsPerDay] = useState(DEFAULT_PIXELS_PER_DAY);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(0);
+  const [scrollTop, setScrollTop] = useState(0);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollStore = useRef(createScrollStore()).current;
@@ -287,6 +289,8 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
 
   const handleScroll = useCallback(() => {
     syncScrollLeftFromElement();
+    const el = scrollRef.current;
+    if (el) setScrollTop(el.scrollTop);
   }, [syncScrollLeftFromElement]);
 
   useEffect(() => {
@@ -388,6 +392,15 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
 
       <CategoryLegend categoryVisibility={categoryVisibility} />
 
+      <div className="order-4 flex min-h-0 min-w-0 flex-1">
+      <BandGutter
+        bands={layout.bands}
+        bandGeometry={bandGeometry}
+        categoryById={categoryById}
+        eventsTop={EVENTS_TOP}
+        scrollTop={scrollTop}
+        onToggleBand={toggleBand}
+      />
       <div
         ref={scrollRef}
         onScroll={handleScroll}
@@ -395,7 +408,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
           // Tap on empty canvas dismisses the phone preview card.
           if (!(e.target as Element).closest("button")) setPreviewEvent(null);
         }}
-        className="timeline-scroll order-4 min-w-0 flex-1 cursor-grab overflow-x-auto overflow-y-auto"
+        className="timeline-scroll min-w-0 flex-1 cursor-grab overflow-x-auto overflow-y-auto"
       >
         <TimelineViewport
           scrollRef={scrollRef}
@@ -405,7 +418,6 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
           viewportHeight={viewportHeight}
           categoryById={categoryById}
           bandGeometry={bandGeometry}
-          onToggleBand={toggleBand}
           backgroundRowHeight={BACKGROUND_ROW_HEIGHT}
           backgroundHeight={BACKGROUND_HEIGHT}
           eventsTop={EVENTS_TOP}
@@ -413,6 +425,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
           labelHeight={EVENT_LABEL_HEIGHT}
           laneHeight={LANE_HEIGHT}
         />
+      </div>
       </div>
 
       <TimelineRulerStrip
@@ -423,6 +436,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
         categories={categories}
         className="order-3"
         onJumpToDay={scrollToDayIndex}
+        leftInset={BAND_GUTTER_WIDTH}
       />
     </div>
   );

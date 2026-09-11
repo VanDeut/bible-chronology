@@ -29,7 +29,7 @@ export const BAND_HEADER_HEIGHT = 6;
 /** Gap between consecutive bands. */
 export const BAND_GAP = 4;
 /** Bands never get shorter than this so the vertical name label stays readable. */
-export const MIN_BAND_HEIGHT = 72;
+export const MIN_BAND_HEIGHT = 84;
 /** Height of a collapsed band. */
 export const COLLAPSED_BAND_HEIGHT = 26;
 

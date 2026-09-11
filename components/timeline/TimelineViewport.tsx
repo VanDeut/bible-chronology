@@ -33,7 +33,6 @@ interface TimelineViewportProps {
   categoryById: Map<string, Category>;
   /** Index-aligned with layout.bands; offsets relative to eventsTop. */
   bandGeometry: BandGeometry[];
-  onToggleBand: (categoryId: string) => void;
   backgroundRowHeight: number;
   backgroundHeight: number;
   eventsTop: number;
@@ -51,7 +50,6 @@ export const TimelineViewport = memo(function TimelineViewport({
   viewportHeight,
   categoryById,
   bandGeometry,
-  onToggleBand,
   backgroundRowHeight,
   backgroundHeight,
   eventsTop,
@@ -225,6 +223,14 @@ export const TimelineViewport = memo(function TimelineViewport({
                 borderTop: `1px solid ${colorWithAlpha(color, 0.55)}`,
               }}
             >
+              {geo.collapsed && (
+                <span
+                  className="font-serif sticky left-2 top-1 inline-block max-w-[240px] truncate rounded-md bg-[var(--surface)]/90 px-1.5 text-[10.5px] font-medium leading-[18px] text-[var(--foreground)]"
+                  style={{ marginTop: 4 }}
+                >
+                  {category?.name ?? "Uncategorized"}
+                </span>
+              )}
             </div>
           );
         })}
@@ -311,59 +317,6 @@ export const TimelineViewport = memo(function TimelineViewport({
               labelRow={labelRow}
               rightGap={rightGap}
             />
-          );
-        })}
-      </div>
-
-      {/* Band names: sticky in both axes so they stay visible while panning
-          and while scrolling down through a tall band. */}
-      <div
-        className="pointer-events-none absolute left-0 right-0 z-[15]"
-        style={{ top: eventsTop }}
-      >
-        {layout.bands.map((band, i) => {
-          const geo = bandGeometry[i];
-          if (!geo) return null;
-          const category = categoryById.get(band.key);
-          const color = category?.color ?? "#6366f1";
-          const name = category?.name ?? "Uncategorized";
-          const ring = { boxShadow: `0 0 0 1px ${colorWithAlpha(color, 0.6)}` };
-          return (
-            <div
-              key={band.key}
-              className="absolute left-0 right-0"
-              style={{ top: geo.top, height: geo.height }}
-            >
-              {geo.collapsed ? (
-                <button
-                  type="button"
-                  onClick={() => onToggleBand(band.key)}
-                  className="font-serif pointer-events-auto sticky left-1 top-1 inline-flex max-w-[240px] cursor-pointer items-center gap-1 truncate rounded-md bg-[var(--surface)] px-1.5 text-[10.5px] font-medium tracking-wide text-[var(--foreground)] hover:bg-[var(--background)]"
-                  style={{ marginTop: 4, height: 18, ...ring }}
-                  title={`Expand ${name}`}
-                  aria-expanded={false}
-                >
-                  <span aria-hidden>▸</span>
-                  <span className="truncate">{name}</span>
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => onToggleBand(band.key)}
-                  className="font-serif pointer-events-auto sticky left-1 top-2 inline-block max-h-[calc(100%-16px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap rounded-md bg-[var(--surface)] px-0.5 py-1.5 text-[10.5px] font-medium tracking-wide text-[var(--foreground)] hover:bg-[var(--background)]"
-                  style={{
-                    marginTop: 8,
-                    writingMode: "vertical-rl",
-                    transform: "rotate(180deg)",
-                    ...ring,
-                  }}
-                  title={`Collapse ${name}`}
-                  aria-expanded={true}
-                >
-                  {name}
-                </button>
-              )}
-            </div>
           );
         })}
       </div>

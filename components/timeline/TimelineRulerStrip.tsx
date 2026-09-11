@@ -16,6 +16,8 @@ interface TimelineRulerStripProps {
   categories: Category[];
   className?: string;
   onJumpToDay?: (dayIndex: number) => void;
+  /** Width of the band-name gutter to the left of the scroll canvas. */
+  leftInset?: number;
 }
 
 /** Date ruler pinned above the scroll canvas; syncs to the timeline scroll container. */
@@ -27,6 +29,7 @@ export const TimelineRulerStrip = memo(function TimelineRulerStrip({
   categories,
   className = "",
   onJumpToDay,
+  leftInset = 0,
 }: TimelineRulerStripProps) {
   const scrollLeft = useElementScrollLeft(scrollRef);
   const width =
@@ -60,6 +63,7 @@ export const TimelineRulerStrip = memo(function TimelineRulerStrip({
   return (
     <div
       className={`shrink-0 overflow-hidden border-b border-[var(--border)] bg-[var(--surface)] ${className}`}
+      style={{ paddingLeft: leftInset }}
     >
       <div
         className="relative h-8"
