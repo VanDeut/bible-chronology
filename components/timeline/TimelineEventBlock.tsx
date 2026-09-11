@@ -147,8 +147,9 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
             width: markerWidth,
             height: eventHeight,
             left: (hitWidth - markerWidth) / 2,
-            backgroundColor: colorWithAlpha(color, 0.22),
+            backgroundColor: colorWithAlpha(color, 0.5),
             borderLeft: `3px solid ${color}`,
+            boxShadow: `inset 0 0 0 1px ${colorWithAlpha(color, 0.45)}`,
             color: "var(--foreground)",
           }}
         >

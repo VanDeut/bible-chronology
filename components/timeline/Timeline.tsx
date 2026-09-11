@@ -58,6 +58,7 @@ function getTimelineMetrics(viewportWidth: number, pixelsPerDay: number) {
   const gap = showPointLabels ? 10 : compact ? 5 : 8;
   const backgroundHeight = compact ? 22 : 28;
   const laneHeight = eventHeight + labelHeight + gap;
+  const compactLaneHeight = eventHeight + (compact ? 4 : 6);
   const eventsTop = backgroundHeight;
 
   return {
@@ -65,6 +66,7 @@ function getTimelineMetrics(viewportWidth: number, pixelsPerDay: number) {
     labelHeight,
     backgroundHeight,
     laneHeight,
+    compactLaneHeight,
     eventsTop,
   };
 }
@@ -121,12 +123,19 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
     labelHeight: EVENT_LABEL_HEIGHT,
     backgroundHeight: BACKGROUND_ROW_HEIGHT,
     laneHeight: LANE_HEIGHT,
+    compactLaneHeight: COMPACT_LANE_HEIGHT,
   } = metrics;
   const BACKGROUND_HEIGHT = BACKGROUND_ROW_HEIGHT * layout.backgroundRowCount;
 
   const bandGeometry = useMemo(
-    () => computeBandGeometry(layout.bands, layout.pixelsPerDay, LANE_HEIGHT, true),
-    [layout.bands, layout.pixelsPerDay, LANE_HEIGHT]
+    () =>
+      computeBandGeometry(
+        layout.bands,
+        layout.pixelsPerDay,
+        { full: LANE_HEIGHT, compact: COMPACT_LANE_HEIGHT },
+        true
+      ),
+    [layout.bands, layout.pixelsPerDay, LANE_HEIGHT, COMPACT_LANE_HEIGHT]
   );
 
   const EVENTS_TOP = BACKGROUND_HEIGHT;

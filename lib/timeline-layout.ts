@@ -93,6 +93,11 @@ export interface LayoutBand {
   rangeLaneCount: number;
   /** Highest featured-circle float tier in this band, or -1 when none. */
   maxFloatTier: number;
+  /**
+   * Per lane: true when a point marker (with its label below) sits in it, so
+   * the lane needs the taller row; range-only lanes can be compact.
+   */
+  laneHasPointMarker: boolean[];
 }
 
 export interface BandSpec {
@@ -407,13 +412,31 @@ function layoutSingleBand(
       ? Math.max(...rangeEvents.map((e) => e.lane)) + 1
       : 0;
 
-  if (pixelsPerDay >= LABEL_ZOOM_THRESHOLD && maxLabelRow > 0) {
+  const labelRowLayout = pixelsPerDay >= LABEL_ZOOM_THRESHOLD;
+  if (labelRowLayout && maxLabelRow > 0) {
     maxLane = Math.max(maxLane, rangeLaneCount + maxLabelRow + 1);
+  }
+
+  const laneHasPointMarker: boolean[] = Array(maxLane).fill(false);
+  for (const entry of layoutEvents) {
+    if (!isPointEvent(entry.event)) continue;
+    // Above the label-zoom threshold, plain point events move into label rows
+    // (placed after the range lanes), which always need the tall row.
+    if (labelRowLayout && !usesFeaturedCircle(entry.event)) {
+      laneHasPointMarker[rangeLaneCount + entry.labelRow] = true;
+    } else {
+      laneHasPointMarker[entry.lane] = true;
+    }
   }
 
   return {
     events: layoutEvents,
-    summary: { laneCount: maxLane, rangeLaneCount, maxFloatTier },
+    summary: {
+      laneCount: maxLane,
+      rangeLaneCount,
+      maxFloatTier,
+      laneHasPointMarker,
+    },
   };
 }
 

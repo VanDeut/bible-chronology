@@ -11,17 +11,26 @@ export interface BandGeometry {
   /** Baseline of lane 0 — band top + header + featured overflow. */
   eventsTop: number;
   height: number;
+  /** Offset of each lane from eventsTop; range-only lanes are compact. */
+  laneTops: number[];
+}
+
+export interface LaneMetrics {
+  /** Row height for lanes holding point markers (marker + label + gap). */
+  full: number;
+  /** Row height for lanes holding only range bars. */
+  compact: number;
 }
 
 /** Space reserved at the top of each band for the category name label. */
-export const BAND_HEADER_HEIGHT = 22;
+export const BAND_HEADER_HEIGHT = 20;
 /** Gap between consecutive bands. */
-export const BAND_GAP = 6;
+export const BAND_GAP = 4;
 
 export function computeBandGeometry(
   bands: LayoutBand[],
   pixelsPerDay: number,
-  laneHeight: number,
+  lane: LaneMetrics,
   showHeaders: boolean
 ): BandGeometry[] {
   const diameter = getFeaturedCircleDiameter(pixelsPerDay);
@@ -36,11 +45,18 @@ export function computeBandGeometry(
       band.maxFloatTier >= 0
         ? getFeaturedMarkerOverflow(diameter, labelFont, band.maxFloatTier)
         : 0;
-    const lanes = Math.max(band.laneCount, 1) * laneHeight;
+
+    const laneTops: number[] = [];
+    let lanesHeight = 0;
+    for (let i = 0; i < Math.max(band.laneCount, 1); i++) {
+      laneTops.push(lanesHeight);
+      lanesHeight += band.laneHasPointMarker[i] ? lane.full : lane.compact;
+    }
+
     const top = cursor;
     const eventsTop = top + header + featuredPad;
-    const height = header + featuredPad + lanes;
-    result.push({ top, eventsTop, height });
+    const height = header + featuredPad + lanesHeight;
+    result.push({ top, eventsTop, height, laneTops });
     cursor = top + height + BAND_GAP;
   }
 
