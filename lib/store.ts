@@ -126,7 +126,16 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
 
   deleteEvent: (id) => {
     set((s) => ({
-      data: { ...s.data, events: s.data.events.filter((e) => e.id !== id) },
+      data: {
+        ...s.data,
+        events: s.data.events
+          .filter((e) => e.id !== id)
+          .map((e) =>
+            e.relatedEventIds?.includes(id)
+              ? { ...e, relatedEventIds: e.relatedEventIds.filter((r) => r !== id) }
+              : e
+          ),
+      },
       detailItem:
         s.detailItem?.type === "event" && s.detailItem.data.id === id
           ? null

@@ -8,6 +8,7 @@ import {
   FormTextarea,
   buttonPrimaryClass,
 } from "../ui/FormField";
+import { RelatedEventsInput } from "./RelatedEventsInput";
 import { LinksInput } from "./LinksInput";
 import { ImageUpload, isValidImageUrl } from "./ImageUpload";
 import { DateInput } from "./DateInput";
@@ -55,6 +56,10 @@ export function EventFormModal({ onClose, editId }: EventFormModalProps) {
   const [imageUrl, setImageUrl] = useState(existing?.imageUrl ?? "");
   const [imageUrlDraft, setImageUrlDraft] = useState(existing?.imageUrl ?? "");
   const [featured, setFeatured] = useState(existing?.featured ?? false);
+  const [scripture, setScripture] = useState(existing?.scripture ?? "");
+  const [relatedEventIds, setRelatedEventIds] = useState<string[]>(
+    existing?.relatedEventIds ?? []
+  );
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -131,6 +136,8 @@ export function EventFormModal({ onClose, editId }: EventFormModalProps) {
       links: links.filter(Boolean),
       imageUrl: trimmedImageUrl || undefined,
       featured: featured || undefined,
+      scripture: scripture.trim() || undefined,
+      relatedEventIds: relatedEventIds.length > 0 ? relatedEventIds : undefined,
     };
 
     if (existing) {
@@ -238,6 +245,24 @@ export function EventFormModal({ onClose, editId }: EventFormModalProps) {
             placeholder="Optional notes…"
           />
         </FormField>
+
+        <FormField label="Scripture references">
+          <FormInput
+            value={scripture}
+            onChange={(e) => setScripture(e.target.value)}
+            placeholder="e.g. Gen 5:3; 1 Ki 2:1-4; Ps 90"
+          />
+          <p className="mt-1.5 text-xs text-[var(--muted)]">
+            Separate with semicolons. Each reference links to the New World
+            Translation on jw.org.
+          </p>
+        </FormField>
+
+        <RelatedEventsInput
+          selectedIds={relatedEventIds}
+          onChange={setRelatedEventIds}
+          excludeId={editId}
+        />
 
         <LinksInput links={links} onChange={setLinks} />
 

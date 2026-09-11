@@ -39,6 +39,11 @@ export function unregisterTimelineController() {
   listeners.forEach((l) => l());
 }
 
+/** Non-hook access for event handlers. */
+export function getTimelineController(): TimelineControllerApi {
+  return controller;
+}
+
 export function useTimelineController(): TimelineControllerApi {
   const [, tick] = useState(0);
 

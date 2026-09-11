@@ -6,6 +6,8 @@ import type { DetailItem } from "@/lib/types";
 import { useTimelineStore } from "@/lib/store";
 import { getCategoryById } from "@/lib/merge";
 import { getEventCategoryIds } from "@/lib/event-categories";
+import { parseScriptureRefs } from "@/lib/scripture";
+import { getTimelineController } from "@/lib/timeline-controller";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { DetailImage } from "../ui/DetailImage";
 import { showToast } from "@/lib/use-toast";
@@ -23,6 +25,8 @@ function cleanDisplayText(text: string): string {
 
 export function DetailPanel({ item, onClose, onEdit }: DetailPanelProps) {
   const categories = useTimelineStore((s) => s.data.categories);
+  const allEvents = useTimelineStore((s) => s.data.events);
+  const setDetailItem = useTimelineStore((s) => s.setDetailItem);
   const deleteEvent = useTimelineStore((s) => s.deleteEvent);
   const deleteBackground = useTimelineStore((s) => s.deleteBackground);
   const restoreEvent = useTimelineStore((s) => s.restoreEvent);
@@ -74,6 +78,18 @@ export function DetailPanel({ item, onClose, onEdit }: DetailPanelProps) {
 
   if (item.type === "event") {
     const event = item.data;
+    const scriptureRefs = parseScriptureRefs(event.scripture);
+    const relatedIds = event.relatedEventIds ?? [];
+    const relatedEvents = relatedIds
+      .map((id) => allEvents.find((e) => e.id === id))
+      .filter((e): e is NonNullable<typeof e> => e != null);
+    // Events that point at this one (e.g. children of a parent).
+    const linkedFrom = allEvents.filter(
+      (e) =>
+        e.id !== event.id &&
+        !relatedIds.includes(e.id) &&
+        e.relatedEventIds?.includes(event.id)
+    );
     const eventCategories = getEventCategoryIds(event)
       .map((id) => getCategoryById(categories, id))
       .filter((c): c is NonNullable<typeof c> => c != null);
@@ -134,6 +150,61 @@ export function DetailPanel({ item, onClose, onEdit }: DetailPanelProps) {
               <p className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--muted)]">
                 {event.notes}
               </p>
+            </DetailSection>
+          )}
+
+          {scriptureRefs.length > 0 && (
+            <DetailSection title="Scripture">
+              <ul className="flex flex-wrap gap-1.5">
+                {scriptureRefs.map((ref, i) =>
+                  ref.url ? (
+                    <li key={i}>
+                      <a
+                        href={ref.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 text-xs font-medium text-indigo-500 hover:border-indigo-400 hover:text-indigo-600"
+                        title={`Read ${ref.label} on jw.org`}
+                      >
+                        {ref.label}
+                        <span aria-hidden className="text-[10px]">↗</span>
+                      </a>
+                    </li>
+                  ) : (
+                    <li
+                      key={i}
+                      className="rounded-full border border-[var(--border)] px-2.5 py-1 text-xs text-[var(--muted)]"
+                      title="Could not recognise this reference"
+                    >
+                      {ref.label}
+                    </li>
+                  )
+                )}
+              </ul>
+            </DetailSection>
+          )}
+
+          {(relatedEvents.length > 0 || linkedFrom.length > 0) && (
+            <DetailSection title="Related events">
+              <ul className="space-y-1">
+                {[...relatedEvents, ...linkedFrom].map((rel) => (
+                  <li key={rel.id}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setDetailItem({ type: "event", data: rel });
+                        getTimelineController().scrollToEvent(rel.id);
+                      }}
+                      className="flex w-full items-baseline justify-between gap-3 rounded-lg border border-[var(--border)] px-2.5 py-1.5 text-left text-sm hover:bg-[var(--surface)]"
+                    >
+                      <span className="truncate">{rel.title}</span>
+                      <span className="tabular-nums shrink-0 text-xs text-[var(--muted)]">
+                        {formatDate(rel.startDate)}
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </DetailSection>
           )}
 

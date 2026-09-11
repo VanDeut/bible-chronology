@@ -17,6 +17,10 @@ export interface TimelineEvent {
   imageUrl?: string;
   /** Stays prominent when zoomed out (larger pin, label at lower zoom). */
   featured?: boolean;
+  /** Free-text scripture references, e.g. "Gen 5:3; 1 Ki 2:1-4" (linked to jw.org). */
+  scripture?: string;
+  /** Ids of connected events (e.g. a parent); drawn as connector lines. */
+  relatedEventIds?: string[];
   createdAt: string;
   updatedAt: string;
 }

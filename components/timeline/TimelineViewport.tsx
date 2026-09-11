@@ -92,6 +92,71 @@ export const TimelineViewport = memo(function TimelineViewport({
     [visibleEventIdsKey, visibleEventsRevisionKey, visibleEvents]
   );
 
+  // Connector lines between related events (parent ↔ child, cause ↔ effect).
+  const connectors = useMemo(() => {
+    const positions = new Map<
+      string,
+      { x: number; right: number; y: number }
+    >();
+    for (const entry of layout.events) {
+      const geo = bandGeometry[entry.bandIndex];
+      if (!geo) continue;
+      const band = layout.bands[entry.bandIndex];
+      let y: number;
+      if (geo.collapsed) {
+        y = geo.eventsTop + 13;
+      } else if (usesFeaturedCircle(entry.event)) {
+        y = geo.eventsTop - 2;
+      } else {
+        const useLabelRowLayout =
+          isPointEvent(entry.event) &&
+          layout.pixelsPerDay >= LABEL_ZOOM_THRESHOLD;
+        const rowIndex = useLabelRowLayout
+          ? band.rangeLaneCount + entry.labelRow
+          : entry.lane;
+        y = geo.eventsTop + (geo.laneTops[rowIndex] ?? 0) + eventHeight / 2;
+      }
+      positions.set(entry.event.id, {
+        x: entry.x,
+        right: entry.x + entry.width,
+        y,
+      });
+    }
+
+    const minX = scrollLeft - 200;
+    const maxX = scrollLeft + viewportWidth + 200;
+    const lines: { key: string; d: string; color: string }[] = [];
+    for (const entry of layout.events) {
+      const related = entry.event.relatedEventIds;
+      if (!related?.length) continue;
+      const from = positions.get(entry.event.id)!;
+      const color =
+        categoryById.get(getPrimaryCategoryId(entry.event))?.color ?? "#6366f1";
+      for (const id of related) {
+        const to = positions.get(id);
+        if (!to) continue;
+        // Drop the vertical at this event's start; land on the related bar
+        // there if it spans that date, else on its nearest end.
+        const x = from.x + 1;
+        const landX = x >= to.x && x <= to.right ? x : x < to.x ? to.x : to.right;
+        if (Math.max(x, landX) < minX || Math.min(x, landX) > maxX) continue;
+        const d =
+          landX === x
+            ? `M${x},${from.y} L${x},${to.y}`
+            : `M${x},${from.y} L${x},${to.y} L${landX},${to.y}`;
+        lines.push({ key: `${entry.event.id}-${id}`, d, color });
+      }
+    }
+    return lines;
+  }, [
+    layout,
+    bandGeometry,
+    eventHeight,
+    scrollLeft,
+    viewportWidth,
+    categoryById,
+  ]);
+
   return (
     <div
       style={{ width: layout.totalWidth, height: timelineHeight }}
@@ -164,6 +229,26 @@ export const TimelineViewport = memo(function TimelineViewport({
           );
         })}
       </div>
+
+      {connectors.length > 0 && (
+        <svg
+          className="pointer-events-none absolute left-0 z-[8]"
+          style={{ top: eventsTop, width: layout.totalWidth, height: timelineHeight }}
+          aria-hidden
+        >
+          {connectors.map((line) => (
+            <path
+              key={line.key}
+              d={line.d}
+              fill="none"
+              stroke={line.color}
+              strokeWidth={1.5}
+              strokeDasharray="3 3"
+              strokeOpacity={0.85}
+            />
+          ))}
+        </svg>
+      )}
 
       <div
         className="absolute left-0 right-0 z-10 overflow-visible"

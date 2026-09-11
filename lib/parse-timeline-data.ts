@@ -102,6 +102,10 @@ function parseEvent(raw: unknown, warnings: string[]): TimelineEvent | null {
     links: asStringArray(raw.links),
     imageUrl: asOptionalString(raw.imageUrl),
     featured: asBoolean(raw.featured),
+    scripture: asOptionalString(raw.scripture),
+    relatedEventIds: asStringArray(raw.relatedEventIds).length
+      ? asStringArray(raw.relatedEventIds)
+      : undefined,
     createdAt,
     updatedAt,
   };
