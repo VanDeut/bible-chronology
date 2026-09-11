@@ -39,11 +39,20 @@ function isRtfGarbage(value: string): boolean {
   return /\\rtf1/i.test(value) || /^\{\\rtf/i.test(value) || /^\\[a-z]+\d/i.test(value);
 }
 
+/** Windows-1252 code points 0x80–0x9F that differ from Latin-1 (RTF \'xx escapes). */
+const CP1252_HIGH: Record<number, string> = {
+  0x80: "€", 0x82: "‚", 0x83: "ƒ", 0x84: "„", 0x85: "…", 0x86: "†", 0x87: "‡",
+  0x88: "ˆ", 0x89: "‰", 0x8a: "Š", 0x8b: "‹", 0x8c: "Œ", 0x8e: "Ž", 0x91: "‘",
+  0x92: "’", 0x93: "“", 0x94: "”", 0x95: "•", 0x96: "–", 0x97: "—", 0x98: "˜",
+  0x99: "™", 0x9a: "š", 0x9b: "›", 0x9c: "œ", 0x9e: "ž", 0x9f: "Ÿ",
+};
+
 function unescapeRtf(text: string): string {
   return text
-    .replace(/\\'([0-9a-fA-F]{2})/g, (_, hex: string) =>
-      String.fromCharCode(parseInt(hex, 16))
-    )
+    .replace(/\\'([0-9a-fA-F]{2})/g, (_, hex: string) => {
+      const code = parseInt(hex, 16);
+      return CP1252_HIGH[code] ?? String.fromCharCode(code);
+    })
     .replace(/\\(\r?\n)/g, "$1")
     .replace(/\r\n/g, "\n")
     .replace(/\r/g, "\n");
