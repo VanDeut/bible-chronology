@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-11T19:30:55.024Z",
+  "exportedAt": "2026-09-11T19:30:57.868Z",
   "data": {
     "events": [
       {
@@ -2471,13 +2471,6 @@
         "updatedAt": "2026-09-11T19:23:37.434Z"
       },
       {
-        "id": "cat-default",
-        "name": "General",
-        "color": "#6366f1",
-        "createdAt": "2026-09-11T19:01:43.995Z",
-        "updatedAt": "2026-09-11T19:01:43.995Z"
-      },
-      {
         "id": "fe850126-c72c-4cdd-a01a-857c0677be56",
         "name": "Bible Book Time Period",
         "color": "#ef4444",
@@ -2490,6 +2483,13 @@
         "color": "#8b5cf6",
         "createdAt": "2026-09-11T19:23:37.433Z",
         "updatedAt": "2026-09-11T19:23:37.433Z"
+      },
+      {
+        "id": "cat-default",
+        "name": "General",
+        "color": "#6366f1",
+        "createdAt": "2026-09-11T19:01:43.995Z",
+        "updatedAt": "2026-09-11T19:01:43.995Z"
       },
       {
         "id": "a192cfbe-3206-4c3d-b579-1814c594d5a5",
