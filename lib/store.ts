@@ -17,6 +17,7 @@ import {
   clearSavedTimelineView,
   notifyTimelineDataCleared,
 } from "./timeline-view-storage";
+import { useGitHubSync } from "./github-sync";
 
 interface TimelineStore {
   data: TimelineData;
@@ -75,6 +76,15 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
   initialize: async () => {
     const local = normalizeTimelineData(await loadLocalData());
     set({ data: local, isLoaded: true });
+
+    useGitHubSync.getState().attach({
+      getData: () => get().data,
+      setDataFromRemote: (data) => {
+        set({ data, detailItem: null });
+        queuePersist(() => saveLocalData(data));
+      },
+    });
+    void useGitHubSync.getState().syncNow();
   },
 
   setDetailItem: (item) => set({ detailItem: item }),
@@ -286,5 +296,6 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
     queuePersist(async () => {
       await saveLocalData(get().data);
     });
+    useGitHubSync.getState().notifyLocalChange();
   },
 }));

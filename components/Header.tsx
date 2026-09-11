@@ -6,6 +6,7 @@ import { useFocusTrap } from "@/lib/use-focus-trap";
 import { CategoryFilterMenu } from "./CategoryFilterMenu";
 import type { ModalType } from "./AppShell";
 import type { useHiddenCategories } from "@/lib/use-hidden-categories";
+import { useGitHubSync } from "@/lib/github-sync";
 
 type CategoryVisibility = ReturnType<typeof useHiddenCategories>;
 
@@ -61,9 +62,12 @@ export function Header({ onOpenModal, categoryVisibility }: HeaderProps) {
   return (
     <header className="z-20 shrink-0 border-b border-[var(--border)] bg-[var(--surface)]">
       <div className="flex items-center justify-between gap-2 px-3 py-2 sm:px-4">
-        <h1 className="font-serif truncate text-lg font-semibold tracking-tight sm:text-xl">
-          Bible Chronology
-        </h1>
+        <div className="flex min-w-0 items-center gap-2">
+          <h1 className="font-serif truncate text-lg font-semibold tracking-tight sm:text-xl">
+            Bible Chronology
+          </h1>
+          <SyncStatusDot onClick={() => onOpenModal("github-sync")} />
+        </div>
 
         <nav className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <HeaderButton
@@ -141,6 +145,9 @@ export function Header({ onOpenModal, categoryVisibility }: HeaderProps) {
                 <MenuItem onClick={() => open("import-export")}>
                   Backup & restore
                 </MenuItem>
+                <MenuItem onClick={() => open("github-sync")}>
+                  GitHub sync…
+                </MenuItem>
               </div>
             )}
           </div>
@@ -188,6 +195,34 @@ function HeaderButton({
       className={`${headerButtonClass}${className ? ` ${className}` : ""}`}
     >
       {children}
+    </button>
+  );
+}
+
+/** Tiny GitHub-sync indicator; hidden when sync is not configured. */
+function SyncStatusDot({ onClick }: { onClick: () => void }) {
+  const status = useGitHubSync((s) => s.status);
+  const error = useGitHubSync((s) => s.error);
+  if (status === "off") return null;
+
+  const { color, label } =
+    status === "syncing"
+      ? { color: "bg-amber-400 animate-pulse", label: "Syncing with GitHub…" }
+      : status === "error"
+        ? { color: "bg-red-500", label: `GitHub sync error: ${error ?? ""}` }
+        : status === "offline"
+          ? { color: "bg-slate-400", label: "Offline — changes sync when back online" }
+          : { color: "bg-emerald-500", label: "Synced with GitHub" };
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      title={label}
+      aria-label={label}
+      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full hover:bg-[var(--background)]"
+    >
+      <span className={`h-2 w-2 rounded-full ${color}`} />
     </button>
   );
 }

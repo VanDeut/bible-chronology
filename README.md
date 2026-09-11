@@ -13,6 +13,7 @@ A personal, offline-first timeline web app for biblical/historical events — no
 - Visible-event culling for large timelines
 - Offline-first storage (IndexedDB)
 - **Menu → Backup & restore** — JSON import/export (merge or replace), or clear all data to start fresh
+- **Menu → GitHub sync** — keep the timeline as `data/timeline.json` in a GitHub repo so every device opens with the same data (see below)
 - CSV import with column mapping; AI extraction prompt for PDF/image workflows
 - Image URLs you host on your own domain (events and backgrounds)
 - Client-side password gate (no user accounts)
@@ -49,6 +50,16 @@ If neither is set at build time, the app opens without a password gate.
 - **Menu → Backup & restore** — download JSON, import on this or another device.
 - To move data between devices, copy the JSON file (iCloud, OneDrive, email, etc.).
 - Deleting an event or background shows an **Undo** toast for a few seconds.
+
+## GitHub Sync (multi-device)
+
+Optional. The app can commit the timeline to a JSON file in a GitHub repo and pull it again on every device — no manual export/import.
+
+1. On GitHub: **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**. Restrict it to this repository and grant **Contents: Read and write**. Copy the token.
+2. In the app: **Menu → GitHub sync…**, enter `owner/repo`, keep branch `main` and path `data/timeline.json`, paste the token, **Connect**.
+3. Repeat step 2 on each device (same token is fine, or one per device).
+
+Edits are committed a few seconds after you make them; the app pulls the latest file when opened or when the tab regains focus. If two devices edit at the same time the changes are merged by item (newest `updatedAt` wins). The token is stored only in the browser. Note that the data file is as visible as the repo itself — in a public repo it is public.
 
 ## Images
 

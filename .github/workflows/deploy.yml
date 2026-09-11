@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # Data commits made by the app's GitHub sync do not need a rebuild.
+    paths-ignore:
+      - "data/**"
   workflow_dispatch:
 
 permissions:

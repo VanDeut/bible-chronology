@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_BASE_PATH: isGithubPages ? `/${repoName}` : "",
+    // Pre-fills the GitHub sync settings when built by the Pages workflow.
+    NEXT_PUBLIC_GITHUB_REPO: process.env.GITHUB_REPOSITORY ?? "",
   },
   ...(isGithubPages && {
     basePath: `/${repoName}`,

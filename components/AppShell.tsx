@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { Timeline } from "./timeline/Timeline";
 import { DetailPanel } from "./panels/DetailPanel";
@@ -14,12 +14,14 @@ import { AppearanceModal } from "./modals/AppearanceModal";
 import { JumpToYearModal } from "./modals/JumpToYearModal";
 import { SearchEventsModal } from "./modals/SearchEventsModal";
 import { HelpModal } from "./modals/HelpModal";
+import { GitHubSyncModal } from "./modals/GitHubSyncModal";
 import { Toaster } from "./ui/Toaster";
 import { EmptyState } from "./EmptyState";
 import { useTimelineStore } from "@/lib/store";
 import { useHiddenCategories } from "@/lib/use-hidden-categories";
 import { useAppearanceSettings } from "@/lib/use-appearance-settings";
 import { useKeyboardShortcuts } from "@/lib/use-keyboard-shortcuts";
+import { startSyncListeners } from "@/lib/github-sync";
 
 export type ModalType =
   | "event"
@@ -32,6 +34,7 @@ export type ModalType =
   | "search"
   | "jump-to-year"
   | "help"
+  | "github-sync"
   | null;
 
 export function AppShell() {
@@ -62,6 +65,8 @@ export function AppShell() {
     setModal(null);
     setEditId(null);
   };
+
+  useEffect(() => startSyncListeners(), []);
 
   useKeyboardShortcuts({
     onOpenSearch: () => openModal("search"),
@@ -119,6 +124,7 @@ export function AppShell() {
       {modal === "search" && <SearchEventsModal onClose={closeModal} />}
       {modal === "jump-to-year" && <JumpToYearModal onClose={closeModal} />}
       {modal === "help" && <HelpModal onClose={closeModal} />}
+      {modal === "github-sync" && <GitHubSyncModal onClose={closeModal} />}
       {modal === "import-export" && (
         <ImportExportModal onClose={closeModal} />
       )}
