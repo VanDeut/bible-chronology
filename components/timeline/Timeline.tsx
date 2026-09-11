@@ -19,6 +19,7 @@ import {
   isEventVisibleForCategories,
 } from "@/lib/event-categories";
 import { computeBandGeometry, totalBandsHeight } from "@/lib/timeline-bands";
+import { useCollapsedBands } from "@/lib/use-collapsed-bands";
 import {
   getEventStartDayIndex,
   dateToX,
@@ -127,15 +128,17 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
   } = metrics;
   const BACKGROUND_HEIGHT = BACKGROUND_ROW_HEIGHT * layout.backgroundRowCount;
 
+  const { toggleBand, isBandCollapsed } = useCollapsedBands();
   const bandGeometry = useMemo(
     () =>
       computeBandGeometry(
         layout.bands,
         layout.pixelsPerDay,
         { full: LANE_HEIGHT, compact: COMPACT_LANE_HEIGHT },
-        true
+        true,
+        isBandCollapsed
       ),
-    [layout.bands, layout.pixelsPerDay, LANE_HEIGHT, COMPACT_LANE_HEIGHT]
+    [layout.bands, layout.pixelsPerDay, LANE_HEIGHT, COMPACT_LANE_HEIGHT, isBandCollapsed]
   );
 
   const EVENTS_TOP = BACKGROUND_HEIGHT;
@@ -397,6 +400,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
           viewportHeight={viewportHeight}
           categoryById={categoryById}
           bandGeometry={bandGeometry}
+          onToggleBand={toggleBand}
           backgroundRowHeight={BACKGROUND_ROW_HEIGHT}
           backgroundHeight={BACKGROUND_HEIGHT}
           eventsTop={EVENTS_TOP}
