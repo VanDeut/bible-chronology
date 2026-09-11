@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-11T19:30:47.274Z",
+  "exportedAt": "2026-09-11T19:30:55.024Z",
   "data": {
     "events": [
       {
@@ -2464,18 +2464,18 @@
     "backgrounds": [],
     "categories": [
       {
-        "id": "cat-default",
-        "name": "General",
-        "color": "#6366f1",
-        "createdAt": "2026-09-11T19:01:43.995Z",
-        "updatedAt": "2026-09-11T19:01:43.995Z"
-      },
-      {
         "id": "07a404f7-4096-4c19-b157-7fc06a648b77",
         "name": "World Power",
         "color": "#84cc16",
         "createdAt": "2026-09-11T19:23:37.434Z",
         "updatedAt": "2026-09-11T19:23:37.434Z"
+      },
+      {
+        "id": "cat-default",
+        "name": "General",
+        "color": "#6366f1",
+        "createdAt": "2026-09-11T19:01:43.995Z",
+        "updatedAt": "2026-09-11T19:01:43.995Z"
       },
       {
         "id": "fe850126-c72c-4cdd-a01a-857c0677be56",
@@ -2485,18 +2485,18 @@
         "updatedAt": "2026-09-11T19:23:37.428Z"
       },
       {
-        "id": "a192cfbe-3206-4c3d-b579-1814c594d5a5",
-        "name": "Person (Unfaithful)",
-        "color": "#ec4899",
-        "createdAt": "2026-09-11T19:23:37.432Z",
-        "updatedAt": "2026-09-11T19:23:37.432Z"
-      },
-      {
         "id": "911b7f9d-3dee-40e8-9f06-7af3936f5dc2",
         "name": "Person (Faithful)",
         "color": "#8b5cf6",
         "createdAt": "2026-09-11T19:23:37.433Z",
         "updatedAt": "2026-09-11T19:23:37.433Z"
+      },
+      {
+        "id": "a192cfbe-3206-4c3d-b579-1814c594d5a5",
+        "name": "Person (Unfaithful)",
+        "color": "#ec4899",
+        "createdAt": "2026-09-11T19:23:37.432Z",
+        "updatedAt": "2026-09-11T19:23:37.432Z"
       },
       {
         "id": "f9748fc5-f907-4d01-8220-6d3add815279",
