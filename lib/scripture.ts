@@ -146,9 +146,17 @@ export function parseScriptureRef(text: string): ScriptureRef {
 /** Split "Gen 5:3; 1 Ki 2:1-4, Ps 90" into individual references. */
 export function parseScriptureRefs(value: string | undefined): ScriptureRef[] {
   if (!value?.trim()) return [];
+  let lastBook = "";
   return value
     .split(/[;,\n]+/)
     .map((part) => part.trim())
     .filter(Boolean)
-    .map(parseScriptureRef);
+    .map((part) => {
+      // "Ge 5:32; 10:21" — a bare chapter:verse inherits the previous book.
+      const bare = /^\d+(?::\d+(?:\s*[-–]\s*\d+)?)?$/.test(part);
+      const ref = parseScriptureRef(bare && lastBook ? `${lastBook} ${part}` : part);
+      const bookMatch = part.match(/^([1-3]?\s*[A-Za-z][A-Za-z .]*?)\s*\d/);
+      if (ref.url && bookMatch) lastBook = bookMatch[1].trim();
+      return ref;
+    });
 }
