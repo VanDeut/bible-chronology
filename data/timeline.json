@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-11T19:30:57.868Z",
+  "exportedAt": "2026-09-11T19:31:01.860Z",
   "data": {
     "events": [
       {
@@ -2485,18 +2485,18 @@
         "updatedAt": "2026-09-11T19:23:37.433Z"
       },
       {
-        "id": "cat-default",
-        "name": "General",
-        "color": "#6366f1",
-        "createdAt": "2026-09-11T19:01:43.995Z",
-        "updatedAt": "2026-09-11T19:01:43.995Z"
-      },
-      {
         "id": "a192cfbe-3206-4c3d-b579-1814c594d5a5",
         "name": "Person (Unfaithful)",
         "color": "#ec4899",
         "createdAt": "2026-09-11T19:23:37.432Z",
         "updatedAt": "2026-09-11T19:23:37.432Z"
+      },
+      {
+        "id": "cat-default",
+        "name": "General",
+        "color": "#6366f1",
+        "createdAt": "2026-09-11T19:01:43.995Z",
+        "updatedAt": "2026-09-11T19:01:43.995Z"
       },
       {
         "id": "f9748fc5-f907-4d01-8220-6d3add815279",
