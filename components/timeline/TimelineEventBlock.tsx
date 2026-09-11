@@ -162,14 +162,13 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
         </>
       ) : (
         <span
-          className="absolute bottom-0 left-0 block overflow-hidden rounded-md border border-black/5 text-left text-xs font-medium shadow-sm transition group-hover:shadow-md group-hover:ring-2 group-hover:ring-indigo-400/60 group-hover:brightness-105 group-focus-visible:ring-2 group-focus-visible:ring-indigo-400/60 active:scale-[0.98]"
+          className="absolute bottom-0 left-0 block overflow-hidden rounded-md bg-[var(--surface)] text-left text-[10px] font-medium leading-tight shadow-sm ring-1 ring-[var(--border)] transition group-hover:shadow-md group-hover:ring-indigo-400 group-focus-visible:ring-indigo-400 active:scale-[0.98]"
           style={{
             width: markerWidth,
             height: eventHeight,
             left: (hitWidth - markerWidth) / 2,
-            backgroundColor: colorWithAlpha(color, 0.5),
             borderLeft: `3px solid ${color}`,
-            boxShadow: `inset 0 0 0 1px ${colorWithAlpha(color, 0.45)}`,
+            borderBottom: `2px solid ${color}`,
             color: "var(--foreground)",
           }}
         >
@@ -189,7 +188,7 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
 
       {showLabelBeside && (
         <span
-          className="font-serif pointer-events-none absolute top-1/2 -translate-y-1/2 truncate text-xs font-medium text-[var(--foreground)]"
+          className="font-serif pointer-events-none absolute top-1/2 -translate-y-1/2 truncate text-[10px] font-medium text-[var(--foreground)]"
           style={{
             left: (hitWidth - markerWidth) / 2 + markerWidth + 4,
             maxWidth: besideMaxWidth,

@@ -55,12 +55,13 @@ const COMPACT_BREAKPOINT = 640;
 function getTimelineMetrics(viewportWidth: number, pixelsPerDay: number) {
   const compact = viewportWidth > 0 && viewportWidth < COMPACT_BREAKPOINT;
   const showPointLabels = pixelsPerDay >= LABEL_ZOOM_THRESHOLD;
-  const eventHeight = compact ? 26 : 36;
+  // Slim pill bars, matching the point-event label bubbles.
+  const eventHeight = compact ? 18 : 20;
   const labelHeight = showPointLabels ? POINT_LABEL_ROW_HEIGHT : compact ? 14 : 18;
   const gap = showPointLabels ? 10 : compact ? 5 : 8;
   const backgroundHeight = compact ? 22 : 28;
   const laneHeight = eventHeight + labelHeight + gap;
-  const compactLaneHeight = eventHeight + (compact ? 4 : 6);
+  const compactLaneHeight = eventHeight + (compact ? 5 : 8);
   const eventsTop = backgroundHeight;
 
   return {
