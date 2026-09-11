@@ -15,6 +15,8 @@ export interface BandGeometry {
   laneTops: number[];
   /** Folded to a thin strip of tick marks. */
   collapsed: boolean;
+  /** No events in the current viewport window: band takes no space at all. */
+  hidden: boolean;
 }
 
 export interface LaneMetrics {
@@ -51,7 +53,8 @@ export function computeBandGeometry(
   lane: LaneMetrics,
   showHeaders: boolean,
   isCollapsed: (key: string) => boolean = () => false,
-  nameOf: (key: string) => string = () => ""
+  nameOf: (key: string) => string = () => "",
+  isHidden: (key: string) => boolean = () => false
 ): BandGeometry[] {
   const diameter = getFeaturedCircleDiameter(pixelsPerDay);
   const labelFont = getFeaturedLabelFontSize(diameter);
@@ -61,6 +64,17 @@ export function computeBandGeometry(
   let cursor = 0;
 
   for (const band of bands) {
+    if (isHidden(band.key)) {
+      result.push({
+        top: cursor,
+        eventsTop: cursor,
+        height: 0,
+        laneTops: [0],
+        collapsed: false,
+        hidden: true,
+      });
+      continue;
+    }
     if (isCollapsed(band.key)) {
       const top = cursor;
       result.push({
@@ -69,6 +83,7 @@ export function computeBandGeometry(
         height: COLLAPSED_BAND_HEIGHT,
         laneTops: [0],
         collapsed: true,
+        hidden: false,
       });
       cursor = top + COLLAPSED_BAND_HEIGHT + BAND_GAP;
       continue;
@@ -93,7 +108,7 @@ export function computeBandGeometry(
       header + featuredPad + lanesHeight + header,
       minBandHeightForName(nameOf(band.key))
     );
-    result.push({ top, eventsTop, height, laneTops, collapsed: false });
+    result.push({ top, eventsTop, height, laneTops, collapsed: false, hidden: false });
     cursor = top + height + BAND_GAP;
   }
 

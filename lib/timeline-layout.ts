@@ -608,3 +608,21 @@ export function filterVisibleBackgrounds(
     (b) => b.x + b.width >= minX && b.x <= maxX
   );
 }
+
+/** Keys of bands that have at least one event inside the viewport window (plus buffer). */
+export function bandsWithVisibleEvents(
+  layout: TimelineLayout,
+  scrollLeft: number,
+  viewportWidth: number,
+  buffer = 200
+): Set<string> {
+  const minX = scrollLeft - buffer;
+  const maxX = scrollLeft + viewportWidth + buffer;
+  const keys = new Set<string>();
+  for (const e of layout.events) {
+    if (e.x + e.width >= minX && e.x <= maxX) {
+      keys.add(layout.bands[e.bandIndex].key);
+    }
+  }
+  return keys;
+}

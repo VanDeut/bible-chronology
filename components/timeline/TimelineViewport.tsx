@@ -101,7 +101,7 @@ export const TimelineViewport = memo(function TimelineViewport({
     >();
     for (const entry of layout.events) {
       const geo = bandGeometry[entry.bandIndex];
-      if (!geo) continue;
+      if (!geo || geo.hidden) continue;
       const band = layout.bands[entry.bandIndex];
       let y: number;
       if (geo.collapsed) {
@@ -130,7 +130,8 @@ export const TimelineViewport = memo(function TimelineViewport({
     for (const entry of layout.events) {
       const related = entry.event.relatedEventIds;
       if (!related?.length) continue;
-      const from = positions.get(entry.event.id)!;
+      const from = positions.get(entry.event.id);
+      if (!from) continue;
       const color =
         categoryById.get(getPrimaryCategoryId(entry.event))?.color ?? "#6366f1";
       for (const id of related) {
@@ -212,7 +213,7 @@ export const TimelineViewport = memo(function TimelineViewport({
       >
         {layout.bands.map((band, i) => {
           const geo = bandGeometry[i];
-          if (!geo) return null;
+          if (!geo || geo.hidden) return null;
           const category = categoryById.get(band.key);
           const color = category?.color ?? "#6366f1";
           return (

@@ -43,7 +43,7 @@ export const BandGutter = memo(function BandGutter({
     >
       {bands.map((band, i) => {
         const geo = bandGeometry[i];
-        if (!geo) return null;
+        if (!geo || geo.hidden) return null;
         const category = categoryById.get(band.key);
         const color = category?.color ?? "#6366f1";
         const name = category?.name ?? "Uncategorized";

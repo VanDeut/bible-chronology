@@ -3,8 +3,10 @@
 import { useCallback, useRef, useState, useEffect, useMemo, useLayoutEffect } from "react";
 import { useTimelineStore } from "@/lib/store";
 import { createScrollStore } from "@/lib/scroll-store";
+import { useScrollStore } from "@/lib/use-scroll-store";
 import {
   useTimelineLayout,
+  bandsWithVisibleEvents,
   DEFAULT_PIXELS_PER_DAY,
   MAX_PIXELS_PER_DAY,
   zoomIn,
@@ -149,6 +151,22 @@ export function Timeline({ categoryVisibility, collapsedBands }: TimelineProps) 
   }, [categories]);
 
   const { toggleBand, isBandCollapsed } = collapsedBands;
+
+  // Bands with nothing in the current window collapse to nothing. The key
+  // string only changes when the set changes, so panning within a stretch
+  // of the timeline does not re-run the geometry.
+  const scrollLeftLive = useScrollStore(scrollStore);
+  const visibleBandKey = useMemo(
+    () =>
+      [...bandsWithVisibleEvents(layout, scrollLeftLive, viewportWidth)]
+        .sort()
+        .join("\0"),
+    [layout, scrollLeftLive, viewportWidth]
+  );
+  const isBandHidden = useCallback(
+    (key: string) => viewportWidth > 0 && !visibleBandKey.split("\0").includes(key),
+    [visibleBandKey, viewportWidth]
+  );
   const bandGeometry = useMemo(
     () =>
       computeBandGeometry(
@@ -157,7 +175,8 @@ export function Timeline({ categoryVisibility, collapsedBands }: TimelineProps) 
         { full: LANE_HEIGHT, compact: COMPACT_LANE_HEIGHT },
         true,
         isBandCollapsed,
-        (key) => categoryById.get(key)?.name ?? ""
+        (key) => categoryById.get(key)?.name ?? "",
+        isBandHidden
       ),
     [
       layout.bands,
@@ -166,6 +185,7 @@ export function Timeline({ categoryVisibility, collapsedBands }: TimelineProps) 
       COMPACT_LANE_HEIGHT,
       isBandCollapsed,
       categoryById,
+      isBandHidden,
     ]
   );
 
