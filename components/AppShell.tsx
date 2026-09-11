@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { Timeline } from "./timeline/Timeline";
+import { EventPreviewCard } from "./timeline/EventPreviewCard";
 import { DetailPanel } from "./panels/DetailPanel";
 import { EventFormModal } from "./forms/EventFormModal";
 import { BackgroundFormModal } from "./forms/BackgroundFormModal";
@@ -79,6 +80,7 @@ export function AppShell() {
 
       <main className="relative min-h-0 min-w-0 flex-1">
         <Timeline categoryVisibility={categoryVisibility} />
+        <EventPreviewCard />
         {isEmpty && (
           <EmptyState
             onAddEvent={() => openModal("event")}

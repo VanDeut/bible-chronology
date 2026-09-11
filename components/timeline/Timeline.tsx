@@ -77,6 +77,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
   const backgrounds = useTimelineStore((s) => s.data.backgrounds);
   const categories = useTimelineStore((s) => s.data.categories);
   const setDetailItem = useTimelineStore((s) => s.setDetailItem);
+  const setPreviewEvent = useTimelineStore((s) => s.setPreviewEvent);
 
   const { loaded: categoriesLoaded, isCategoryVisible } = categoryVisibility;
 
@@ -390,6 +391,10 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
       <div
         ref={scrollRef}
         onScroll={handleScroll}
+        onClick={(e) => {
+          // Tap on empty canvas dismisses the phone preview card.
+          if (!(e.target as Element).closest("button")) setPreviewEvent(null);
+        }}
         className="timeline-scroll order-4 min-w-0 flex-1 cursor-grab overflow-x-auto overflow-y-auto"
       >
         <TimelineViewport

@@ -10,6 +10,14 @@ import { usesFeaturedCircle } from "@/lib/featured-marker-size";
 import { FeaturedPointMarker } from "./FeaturedPointMarker";
 
 const MIN_TAP_WIDTH = MIN_POINT_HIT_WIDTH;
+
+/** Phones get a quick preview card on tap instead of the full panel. */
+function isCompactViewport(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 639px)").matches
+  );
+}
 const LABEL_INSIDE_MIN = 56;
 
 /** True when this event reads scrollLeft for sticky in-span labels. */
@@ -55,10 +63,15 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
   rightGap = Number.POSITIVE_INFINITY,
 }: TimelineEventBlockProps) {
   const setDetailItem = useTimelineStore((s) => s.setDetailItem);
+  const setPreviewEvent = useTimelineStore((s) => s.setPreviewEvent);
 
   const handleClick = useCallback(() => {
-    setDetailItem({ type: "event", data: event });
-  }, [event, setDetailItem]);
+    if (isCompactViewport()) {
+      setPreviewEvent(event);
+    } else {
+      setDetailItem({ type: "event", data: event });
+    }
+  }, [event, setDetailItem, setPreviewEvent]);
 
   if (usesFeaturedCircle(event)) {
     return (

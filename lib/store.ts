@@ -23,9 +23,12 @@ interface TimelineStore {
   data: TimelineData;
   isLoaded: boolean;
   detailItem: DetailItem | null;
+  /** Lightweight tap preview on small screens (before opening the full panel). */
+  previewEvent: TimelineEvent | null;
 
   initialize: () => Promise<void>;
   setDetailItem: (item: DetailItem | null) => void;
+  setPreviewEvent: (event: TimelineEvent | null) => void;
 
   addEvent: (event: Omit<TimelineEvent, "id" | "createdAt" | "updatedAt">) => void;
   updateEvent: (id: string, updates: Partial<TimelineEvent>) => void;
@@ -72,6 +75,7 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
   data: createEmptyData(),
   isLoaded: false,
   detailItem: null,
+  previewEvent: null,
 
   initialize: async () => {
     const local = normalizeTimelineData(await loadLocalData());
@@ -87,7 +91,8 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
     void useGitHubSync.getState().syncNow();
   },
 
-  setDetailItem: (item) => set({ detailItem: item }),
+  setDetailItem: (item) => set({ detailItem: item, previewEvent: null }),
+  setPreviewEvent: (event) => set({ previewEvent: event }),
 
   addEvent: (event) => {
     const now = new Date().toISOString();
