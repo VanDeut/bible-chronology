@@ -36,6 +36,8 @@ interface TimelineEventBlockProps {
   scrollLeft?: number;
   floatTier?: number;
   labelRow?: number;
+  /** Free pixels right of the bar before the next event in the lane. */
+  rightGap?: number;
 }
 
 export const TimelineEventBlock = memo(function TimelineEventBlock({
@@ -50,6 +52,7 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
   scrollLeft = 0,
   floatTier = 0,
   labelRow = 0,
+  rightGap = Number.POSITIVE_INFINITY,
 }: TimelineEventBlockProps) {
   const setDetailItem = useTimelineStore((s) => s.setDetailItem);
 
@@ -65,7 +68,7 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
         x={x}
         width={width}
         top={top}
-        eventHeight={eventHeight}
+        eventHeight={0}
         floatTier={floatTier}
         pixelsPerDay={pixelsPerDay}
         onClick={handleClick}
@@ -79,6 +82,10 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
   const showLabelInside = !isPoint && width >= LABEL_INSIDE_MIN;
   const showLabelAbove =
     showLabelsAbove && (isPoint || width < LABEL_INSIDE_MIN);
+  // Narrow bar with room in its lane: write the title beside it instead.
+  const besideMaxWidth = Math.min(160, rightGap - 6);
+  const showLabelBeside =
+    !isPoint && !showLabelInside && !showLabelAbove && besideMaxWidth >= 36;
 
   const hitWidth = Math.max(width, isPoint ? MIN_TAP_WIDTH : 24);
   const hitLeft = isPoint ? x - (hitWidth - Math.max(width, 3)) / 2 : x;
@@ -167,7 +174,19 @@ export const TimelineEventBlock = memo(function TimelineEventBlock({
         </span>
       )}
 
-      {!showLabelInside && !showLabelAbove && (
+      {showLabelBeside && (
+        <span
+          className="font-serif pointer-events-none absolute top-1/2 -translate-y-1/2 truncate text-xs font-medium text-[var(--foreground)]"
+          style={{
+            left: (hitWidth - markerWidth) / 2 + markerWidth + 4,
+            maxWidth: besideMaxWidth,
+          }}
+        >
+          {event.title}
+        </span>
+      )}
+
+      {!showLabelInside && !showLabelAbove && !showLabelBeside && (
         <span className="font-serif pointer-events-none absolute bottom-full left-1/2 z-30 mb-1 hidden -translate-x-1/2 whitespace-nowrap rounded-lg bg-neutral-900 px-2 py-1 text-[10px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 sm:block">
           {event.title}
           <span className="mx-1 text-neutral-400">·</span>

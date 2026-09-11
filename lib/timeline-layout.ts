@@ -83,6 +83,8 @@ export interface LayoutEvent {
   labelRow: number;
   /** Index into TimelineLayout.bands. */
   bandIndex: number;
+  /** Free pixels to the right of this event before the next occupant of its lane. */
+  rightGap: number;
 }
 
 /** One horizontal stripe of lanes; events grouped by their band key (primary category). */
@@ -146,7 +148,7 @@ function assignLanes(
   events: TimelineEvent[],
   metricsById: Map<string, { x: number; width: number }>,
   pixelsPerDay: number
-): Map<string, number> {
+): { laneMap: Map<string, number>; rightGapMap: Map<string, number> } {
   const sorted = [...events].sort((a, b) => {
     const dayDiff = getEventStartDayIndex(a) - getEventStartDayIndex(b);
     if (dayDiff !== 0) return dayDiff;
@@ -206,7 +208,22 @@ function assignLanes(
     laneMap.set(event.id, assigned);
   }
 
-  return laneMap;
+  // Room to the right of each bar (for a label beside narrow bars).
+  const rightGapMap = new Map<string, number>();
+  for (const occupants of lanes) {
+    const byX = [...occupants].sort((a, b) => a.hitRect.left - b.hitRect.left);
+    for (let i = 0; i < byX.length; i++) {
+      const metrics = metricsById.get(byX[i].event.id)!;
+      const right = metrics.x + metrics.width;
+      const next = byX[i + 1];
+      rightGapMap.set(
+        byX[i].event.id,
+        next ? Math.max(0, next.hitRect.left - right) : Number.POSITIVE_INFINITY
+      );
+    }
+  }
+
+  return { laneMap, rightGapMap };
 }
 
 function assignBackgroundRows(
@@ -389,7 +406,14 @@ function layoutSingleBand(
   events: Omit<LayoutEvent, "bandIndex">[];
   summary: Omit<LayoutBand, "key">;
 } {
-  const laneMap = assignLanes(events, metricsById, pixelsPerDay);
+  // Featured circles live in the float strip above the lanes and never take
+  // a lane, so they cannot sit on top of another lane's bars.
+  const laneEvents = events.filter((event) => !usesFeaturedCircle(event));
+  const { laneMap, rightGapMap } = assignLanes(
+    laneEvents,
+    metricsById,
+    pixelsPerDay
+  );
 
   const layoutEvents: LayoutEvent[] = events.map((event) => {
     const metrics = metricsById.get(event.id)!;
@@ -401,13 +425,14 @@ function layoutSingleBand(
       floatTier: 0,
       labelRow: 0,
       bandIndex: 0,
+      rightGap: rightGapMap.get(event.id) ?? Number.POSITIVE_INFINITY,
     };
   });
 
   const floatTierMap = assignFeaturedFloatTiers(layoutEvents, pixelsPerDay);
   const pointLabelRowMap = assignPointLabelRows(layoutEvents, pixelsPerDay);
 
-  let maxLane = events.length > 0 ? Math.max(...laneMap.values()) + 1 : 1;
+  let maxLane = laneMap.size > 0 ? Math.max(...laneMap.values()) + 1 : 1;
   let maxLabelRow = 0;
   let maxFloatTier = -1;
 
@@ -433,7 +458,7 @@ function layoutSingleBand(
 
   const laneHasPointMarker: boolean[] = Array(maxLane).fill(false);
   for (const entry of layoutEvents) {
-    if (!isPointEvent(entry.event)) continue;
+    if (!isPointEvent(entry.event) || usesFeaturedCircle(entry.event)) continue;
     // Above the label-zoom threshold, plain point events move into label rows
     // (placed after the range lanes), which always need the tall row.
     if (labelRowLayout && !usesFeaturedCircle(entry.event)) {

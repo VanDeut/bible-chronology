@@ -43,9 +43,10 @@ export function computeBandGeometry(
   let cursor = 0;
 
   for (const band of bands) {
+    // Float strip for featured circles; their anchor dot sits at eventsTop.
     const featuredPad =
       band.maxFloatTier >= 0
-        ? getFeaturedMarkerOverflow(diameter, labelFont, band.maxFloatTier)
+        ? getFeaturedMarkerOverflow(diameter, labelFont, band.maxFloatTier) + 6
         : 0;
 
     const laneTops: number[] = [];

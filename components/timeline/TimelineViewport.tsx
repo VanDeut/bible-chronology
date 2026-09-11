@@ -78,8 +78,8 @@ export const TimelineViewport = memo(function TimelineViewport({
     () =>
       visibleEvents
         .map(
-          ({ event, x, width, lane, floatTier, bandIndex }) =>
-            `${event.id}:${event.updatedAt}:${x}:${width}:${lane}:${floatTier}:${bandIndex}`
+          ({ event, x, width, lane, floatTier, bandIndex, rightGap }) =>
+            `${event.id}:${event.updatedAt}:${x}:${width}:${lane}:${floatTier}:${bandIndex}:${rightGap}`
         )
         .join("\0"),
     [visibleEvents]
@@ -167,7 +167,7 @@ export const TimelineViewport = memo(function TimelineViewport({
         className="absolute left-0 right-0 z-10 overflow-visible"
         style={{ top: eventsTop }}
       >
-        {sortedVisibleEvents.map(({ event, x, width, lane, floatTier, labelRow, bandIndex }) => {
+        {sortedVisibleEvents.map(({ event, x, width, lane, floatTier, labelRow, bandIndex, rightGap }) => {
           const category = categoryById.get(getPrimaryCategoryId(event));
           const band = layout.bands[bandIndex];
           const geo = bandGeometry[bandIndex];
@@ -178,9 +178,11 @@ export const TimelineViewport = memo(function TimelineViewport({
           const rowIndex = useLabelRowLayout
             ? (band?.rangeLaneCount ?? 0) + labelRow
             : lane;
-          const top =
-            (geo?.eventsTop ?? 0) +
-            (geo?.laneTops[rowIndex] ?? rowIndex * laneHeight);
+          // Featured circles anchor at the top of the band's lanes.
+          const top = usesFeaturedCircle(event)
+            ? (geo?.eventsTop ?? 0)
+            : (geo?.eventsTop ?? 0) +
+              (geo?.laneTops[rowIndex] ?? rowIndex * laneHeight);
           const stickyScrollLeft = eventUsesStickyScrollLeft(event, width)
             ? scrollLeft
             : 0;
@@ -199,6 +201,7 @@ export const TimelineViewport = memo(function TimelineViewport({
               scrollLeft={stickyScrollLeft}
               floatTier={floatTier}
               labelRow={labelRow}
+              rightGap={rightGap}
             />
           );
         })}
