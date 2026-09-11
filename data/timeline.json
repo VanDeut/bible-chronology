@@ -72,7 +72,10 @@
         ],
         "links": [],
         "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T19:23:37.433Z"
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "relatedEventIds": [
+          "23c73cda-b4fb-4dc8-90d6-8d0f870bcb21"
+        ]
       },
       {
         "id": "b4cfd0e4-92dc-4dfb-8f26-46d875c93369",
@@ -282,7 +285,10 @@
         ],
         "links": [],
         "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T19:23:37.433Z"
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "relatedEventIds": [
+          "5a8a0b55-a5ee-4e75-9220-287f25133814"
+        ]
       },
       {
         "id": "8e4f8aa0-9d90-4030-8c7f-ac31da16d9ec",
@@ -2607,16 +2613,20 @@
       },
       {
         "id": "c89dd9b2-a536-47b2-8754-f3a0f0df01d3",
-        "title": "Arpachshad born",
+        "title": "Arpachshad",
         "startDate": "-2368-01-01",
-        "notes": "",
+        "notes": "Born 2368 B.C.E. two years after the Flood (Watch Tower Publications Index (Dates)); lived 438 years (Ge 11:12-13), so died 1930 B.C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ge 11:10"
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "scripture": "Ge 11:10-13; Lu 3:36",
+        "endDate": "-1930-01-01",
+        "relatedEventIds": [
+          "b02eb1a6-8262-4075-901b-ced490220680"
+        ]
       },
       {
         "id": "83d3eb8f-f2ba-429d-aa33-d51b57d651af",
@@ -6637,6 +6647,219 @@
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
         "updatedAt": "2026-09-11T20:31:55.986385Z"
+      },
+      {
+        "id": "707768ec-9414-4c9c-a0f7-7445846ce197",
+        "title": "Kenan",
+        "startDate": "-3701-01-01",
+        "notes": "Born when Enosh was 90 (3791−90); lived 910 years. Computed from Ge 5:9-14 using Enosh’s birth year 3791 B.C.E. from the Watch Tower Publications Index (Dates).",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-2791-01-01",
+        "scripture": "Ge 5:9-14; Lu 3:37",
+        "relatedEventIds": [
+          "0603ba78-b730-4343-bf41-4701ff698f00"
+        ]
+      },
+      {
+        "id": "23c73cda-b4fb-4dc8-90d6-8d0f870bcb21",
+        "title": "Mahalalel",
+        "startDate": "-3631-01-01",
+        "notes": "Born when Kenan was 70; lived 895 years. Computed from Ge 5:12-17 (Kenan 3701 B.C.E.). Insight on the Scriptures: “Mahalalel lived 895 years.”",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-2736-01-01",
+        "scripture": "Ge 5:12-17; Lu 3:37",
+        "relatedEventIds": [
+          "707768ec-9414-4c9c-a0f7-7445846ce197"
+        ]
+      },
+      {
+        "id": "0964857e-2ecd-4f1f-b2b4-c7e621be7acc",
+        "title": "Shelah",
+        "startDate": "-2333-01-01",
+        "notes": "Insight on the Scriptures (Shelah): “born in 2333 B.C.E. and died in 1900 B.C.E.”",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-1900-01-01",
+        "scripture": "Ge 11:12-15; Lu 3:35",
+        "relatedEventIds": [
+          "c89dd9b2-a536-47b2-8754-f3a0f0df01d3"
+        ]
+      },
+      {
+        "id": "6ef114d3-b7ca-4e5d-a75e-b6627eb1d3c6",
+        "title": "Eber",
+        "startDate": "-2303-01-01",
+        "notes": "Born when Shelah was 30; lived 464 years. Computed from Ge 11:14-17 (Shelah 2333 B.C.E.). Ancestor of the Hebrews.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-1839-01-01",
+        "scripture": "Ge 11:14-17; Lu 3:35",
+        "relatedEventIds": [
+          "0964857e-2ecd-4f1f-b2b4-c7e621be7acc"
+        ]
+      },
+      {
+        "id": "0f9a8d96-40f4-42a5-8614-b9aaf6cb58be",
+        "title": "Peleg",
+        "startDate": "-2269-01-01",
+        "notes": "Insight on the Scriptures (Peleg): “lived 239 years (2269-2030 B.C.E.)”. In his days the earth was divided (Ge 10:25).",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-2030-01-01",
+        "scripture": "Ge 10:25; Ge 11:16-19; Lu 3:35",
+        "relatedEventIds": [
+          "6ef114d3-b7ca-4e5d-a75e-b6627eb1d3c6"
+        ]
+      },
+      {
+        "id": "e7981c2b-0de9-4c4b-9588-327e5becde4e",
+        "title": "Reu",
+        "startDate": "-2239-01-01",
+        "notes": "Insight on the Scriptures (Reu): “lived 239 years (2239-2000 B.C.E.)”.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-2000-01-01",
+        "scripture": "Ge 11:18-21; Lu 3:35",
+        "relatedEventIds": [
+          "0f9a8d96-40f4-42a5-8614-b9aaf6cb58be"
+        ]
+      },
+      {
+        "id": "9217a5e6-f0cc-44df-97c8-e9b7041e2118",
+        "title": "Serug",
+        "startDate": "-2207-01-01",
+        "notes": "Insight on the Scriptures (Serug): “lived 230 years (2207-1977 B.C.E.)”.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-1977-01-01",
+        "scripture": "Ge 11:20-23; Lu 3:35",
+        "relatedEventIds": [
+          "e7981c2b-0de9-4c4b-9588-327e5becde4e"
+        ]
+      },
+      {
+        "id": "823eea09-c401-444b-a14b-b5f8bf8f9adc",
+        "title": "Nahor",
+        "startDate": "-2177-01-01",
+        "notes": "Insight on the Scriptures (Nahor): “lived 148 years (2177 to 2029 B.C.E.)”.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-2029-01-01",
+        "scripture": "Ge 11:22-25; Lu 3:34",
+        "relatedEventIds": [
+          "9217a5e6-f0cc-44df-97c8-e9b7041e2118"
+        ]
+      },
+      {
+        "id": "5a8a0b55-a5ee-4e75-9220-287f25133814",
+        "title": "Terah",
+        "startDate": "-2148-01-01",
+        "notes": "Insight on the Scriptures (Terah): died at 205 in 1943 B.C.E. when Abraham was 75, so he was 130 at Abraham’s birth (2018 B.C.E.) and born 2148 B.C.E.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "-1943-01-01",
+        "scripture": "Ge 11:24-32; Lu 3:34",
+        "relatedEventIds": [
+          "823eea09-c401-444b-a14b-b5f8bf8f9adc"
+        ]
+      },
+      {
+        "id": "4c10cdf2-e64a-4a00-888a-0144ae98a0bc",
+        "title": "~ Judah",
+        "startDate": "-1772-01-01",
+        "notes": "Fourth son of Jacob by Leah; born during the c. 1774–c. 1767 B.C.E. period when ten sons were born to Jacob (Watch Tower Publications Index (Dates)). Exact year not stated — placed midway.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "scripture": "Ge 29:35; Lu 3:33",
+        "relatedEventIds": [
+          "d9bb23a8-5d7a-4824-9349-e6d5f57c7dc4"
+        ]
+      },
+      {
+        "id": "58e51a10-c1b5-433a-b19d-78e58d59db45",
+        "title": "~ Nahshon, chieftain of Judah (wilderness)",
+        "startDate": "-1513-03-01",
+        "notes": "Insight on the Scriptures: wilderness chieftain of the tribe of Judah at the Exodus (1513 B.C.E.); ancestor of David and Jesus. Birth/death not dated.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "scripture": "Nu 1:7; 1Ch 2:10; Lu 3:32"
+      },
+      {
+        "id": "288407a9-96ac-4976-a4f7-1a6ea1cb4519",
+        "title": "Zerubbabel leads remnant back to Jerusalem",
+        "startDate": "-0537-01-01",
+        "notes": "Insight on the Scriptures (Zerubbabel): led the returning Jews in 537 B.C.E.; governor of Judah; ancestor of Jesus.",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "scripture": "Ezr 2:2; Hag 1:1; Lu 3:27"
+      },
+      {
+        "id": "f2a607da-72c7-436c-a090-347c773f9010",
+        "title": "Jesus",
+        "startDate": "-0002-10-01",
+        "notes": "Born about Ethanim (October) 2 B.C.E., died Nisan 14, 33 C.E. (Watch Tower Publications Index (Dates); Insight on the Scriptures, Jesus Christ). Lineage per Lu 3:23-38 (natural, through Mary) and Mt 1:1-16 (legal, through Joseph).",
+        "categoryIds": [
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
+        ],
+        "links": [],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z",
+        "endDate": "0033-03-14",
+        "scripture": "Lu 2:1-7; Lu 3:23-38; Mt 1:1-16",
+        "relatedEventIds": [
+          "28cb812c-9194-4d0e-94be-5e15df970107",
+          "a796bbd8-ac44-48d7-9dd8-454ca65ac11c"
+        ]
       }
     ],
     "backgrounds": [],
