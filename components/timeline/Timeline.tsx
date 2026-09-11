@@ -14,14 +14,11 @@ import {
   clampZoom,
 } from "@/lib/timeline-layout";
 import { LABEL_ZOOM_THRESHOLD, POINT_LABEL_ROW_HEIGHT } from "@/lib/timeline-point-hit";
-import { isEventVisibleForCategories } from "@/lib/event-categories";
 import {
-  getFeaturedCircleDiameter,
-  getFeaturedLabelFontSize,
-  getFeaturedMarkerOverflow,
-  getMaxFeaturedFloatTier,
-  usesFeaturedCircle,
-} from "@/lib/featured-marker-size";
+  getEventCategoryIds,
+  isEventVisibleForCategories,
+} from "@/lib/event-categories";
+import { computeBandGeometry, totalBandsHeight } from "@/lib/timeline-bands";
 import {
   getEventStartDayIndex,
   dateToX,
@@ -36,7 +33,7 @@ import { TimelineViewport } from "./TimelineViewport";
 import { CategoryLegend } from "../CategoryLegend";
 import { usePinchZoom, type ZoomAnchor } from "./usePinchZoom";
 import { useDragPan } from "./useDragPan";
-import type { Category } from "@/lib/types";
+import type { Category, TimelineEvent } from "@/lib/types";
 import type { useHiddenCategories } from "@/lib/use-hidden-categories";
 import {
   loadSavedTimelineView,
@@ -96,7 +93,27 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
   const scrollStore = useRef(createScrollStore()).current;
   const hasAutoFit = useRef(false);
   const zoomAnchorRef = useRef<ZoomAnchor | null>(null);
-  const layout = useTimelineLayout(filteredEvents, backgrounds, pixelsPerDay);
+  // Band = primary category; falls back to the first visible category when the
+  // primary is hidden via Filter so the event still lands in a shown band.
+  const bandSpec = useMemo(
+    () => ({
+      order: categories.map((c) => c.id),
+      keyOf: (event: TimelineEvent) => {
+        const ids = getEventCategoryIds(event);
+        return (
+          (categoriesLoaded ? ids.find((id) => isCategoryVisible(id)) : undefined) ??
+          ids[0]
+        );
+      },
+    }),
+    [categories, categoriesLoaded, isCategoryVisible]
+  );
+  const layout = useTimelineLayout(
+    filteredEvents,
+    backgrounds,
+    pixelsPerDay,
+    bandSpec
+  );
 
   const metrics = getTimelineMetrics(viewportWidth, pixelsPerDay);
   const {
@@ -107,16 +124,12 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
   } = metrics;
   const BACKGROUND_HEIGHT = BACKGROUND_ROW_HEIGHT * layout.backgroundRowCount;
 
-  const featuredTopPad = useMemo(() => {
-    const hasCircle = layout.events.some((e) => usesFeaturedCircle(e.event));
-    if (!hasCircle) return 0;
-    const maxTier = getMaxFeaturedFloatTier(layout.events);
-    const diameter = getFeaturedCircleDiameter(layout.pixelsPerDay);
-    const labelFont = getFeaturedLabelFontSize(diameter);
-    return getFeaturedMarkerOverflow(diameter, labelFont, maxTier);
-  }, [layout.events, layout.pixelsPerDay]);
+  const bandGeometry = useMemo(
+    () => computeBandGeometry(layout.bands, layout.pixelsPerDay, LANE_HEIGHT, true),
+    [layout.bands, layout.pixelsPerDay, LANE_HEIGHT]
+  );
 
-  const EVENTS_TOP = BACKGROUND_HEIGHT + featuredTopPad;
+  const EVENTS_TOP = BACKGROUND_HEIGHT;
 
   const categoryById = useMemo(() => {
     const map = new Map<string, Category>();
@@ -246,18 +259,12 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
   ]);
 
   const timelineHeight = useMemo(() => {
-    const header = BACKGROUND_HEIGHT + featuredTopPad;
-    const eventsBottom = layout.laneCount * LANE_HEIGHT;
-    const contentHeight = header + Math.max(eventsBottom, LANE_HEIGHT) + 32;
+    const eventsBottom = totalBandsHeight(bandGeometry);
+    const contentHeight =
+      BACKGROUND_HEIGHT + Math.max(eventsBottom, LANE_HEIGHT) + 32;
 
     return Math.max(contentHeight, viewportHeight);
-  }, [
-    layout.laneCount,
-    LANE_HEIGHT,
-    BACKGROUND_HEIGHT,
-    featuredTopPad,
-    viewportHeight,
-  ]);
+  }, [bandGeometry, LANE_HEIGHT, BACKGROUND_HEIGHT, viewportHeight]);
 
   const syncScrollLeftFromElement = useCallback(() => {
     const el = scrollRef.current;
@@ -380,6 +387,7 @@ export function Timeline({ categoryVisibility }: TimelineProps) {
           viewportWidth={viewportWidth}
           viewportHeight={viewportHeight}
           categoryById={categoryById}
+          bandGeometry={bandGeometry}
           backgroundRowHeight={BACKGROUND_ROW_HEIGHT}
           backgroundHeight={BACKGROUND_HEIGHT}
           eventsTop={EVENTS_TOP}

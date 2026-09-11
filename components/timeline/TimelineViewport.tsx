@@ -12,6 +12,8 @@ import {
 import { isPointEvent, LABEL_ZOOM_THRESHOLD, POINT_LABEL_ROW_HEIGHT } from "@/lib/timeline-point-hit";
 import { usesFeaturedCircle } from "@/lib/featured-marker-size";
 import { getPrimaryCategoryId } from "@/lib/event-categories";
+import { BAND_HEADER_HEIGHT, type BandGeometry } from "@/lib/timeline-bands";
+import { colorWithAlpha } from "@/lib/color-utils";
 import { TimelineGrid } from "./TimelineGrid";
 import { BackgroundSpan } from "./BackgroundSpan";
 import { BackgroundImageColumn } from "./BackgroundImageColumn";
@@ -29,6 +31,8 @@ interface TimelineViewportProps {
   viewportWidth: number;
   viewportHeight: number;
   categoryById: Map<string, Category>;
+  /** Index-aligned with layout.bands; offsets relative to eventsTop. */
+  bandGeometry: BandGeometry[];
   backgroundRowHeight: number;
   backgroundHeight: number;
   eventsTop: number;
@@ -45,6 +49,7 @@ export const TimelineViewport = memo(function TimelineViewport({
   viewportWidth,
   viewportHeight,
   categoryById,
+  bandGeometry,
   backgroundRowHeight,
   backgroundHeight,
   eventsTop,
@@ -73,8 +78,8 @@ export const TimelineViewport = memo(function TimelineViewport({
     () =>
       visibleEvents
         .map(
-          ({ event, x, width, lane, floatTier }) =>
-            `${event.id}:${event.updatedAt}:${x}:${width}:${lane}:${floatTier}`
+          ({ event, x, width, lane, floatTier, bandIndex }) =>
+            `${event.id}:${event.updatedAt}:${x}:${width}:${lane}:${floatTier}:${bandIndex}`
         )
         .join("\0"),
     [visibleEvents]
@@ -134,19 +139,64 @@ export const TimelineViewport = memo(function TimelineViewport({
       </div>
 
       <div
+        className="absolute left-0 right-0 z-[6]"
+        style={{ top: eventsTop }}
+      >
+        {layout.bands.map((band, i) => {
+          const geo = bandGeometry[i];
+          if (!geo) return null;
+          const category = categoryById.get(band.key);
+          const color = category?.color ?? "#6366f1";
+          return (
+            <div
+              key={band.key}
+              className="absolute left-0 right-0"
+              style={{
+                top: geo.top,
+                height: geo.height,
+                backgroundColor: colorWithAlpha(color, 0.06),
+                borderTop: `1px solid ${colorWithAlpha(color, 0.35)}`,
+              }}
+            >
+              <span
+                className="sticky left-2 inline-flex items-center gap-1.5 rounded-full px-2 text-[11px] font-medium"
+                style={{
+                  marginTop: (BAND_HEADER_HEIGHT - 18) / 2,
+                  height: 18,
+                  backgroundColor: colorWithAlpha(color, 0.16),
+                  color,
+                }}
+              >
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: color }}
+                  aria-hidden
+                />
+                {category?.name ?? "Uncategorized"}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div
         className="absolute left-0 right-0 z-10 overflow-visible"
         style={{ top: eventsTop }}
       >
-        {sortedVisibleEvents.map(({ event, x, width, lane, floatTier, labelRow }) => {
+        {sortedVisibleEvents.map(({ event, x, width, lane, floatTier, labelRow, bandIndex }) => {
           const category = categoryById.get(getPrimaryCategoryId(event));
+          const band = layout.bands[bandIndex];
+          const bandTop = bandGeometry[bandIndex]?.eventsTop ?? 0;
           const useLabelRowLayout =
             isPointEvent(event) &&
             layout.pixelsPerDay >= LABEL_ZOOM_THRESHOLD &&
             !usesFeaturedCircle(event);
           const pointSlotHeight = POINT_LABEL_ROW_HEIGHT + eventHeight + 10;
-          const top = useLabelRowLayout
-            ? layout.rangeLaneCount * laneHeight + labelRow * pointSlotHeight
-            : lane * laneHeight;
+          const top =
+            bandTop +
+            (useLabelRowLayout
+              ? (band?.rangeLaneCount ?? 0) * laneHeight + labelRow * pointSlotHeight
+              : lane * laneHeight);
           const stickyScrollLeft = eventUsesStickyScrollLeft(event, width)
             ? scrollLeft
             : 0;

@@ -93,12 +93,18 @@ export function DetailPanel({ item, onClose, onEdit }: DetailPanelProps) {
         <div className="space-y-5">
           <div>
             <div className="mb-3 flex flex-wrap gap-2">
-              {eventCategories.map((category) => (
+              {eventCategories.map((category, index) => (
                 <span
                   key={category.id}
                   className="inline-block rounded-full px-2.5 py-1 text-xs font-medium text-white"
                   style={{ backgroundColor: category.color }}
+                  title={
+                    index === 0 && eventCategories.length > 1
+                      ? "Primary category"
+                      : undefined
+                  }
                 >
+                  {index === 0 && eventCategories.length > 1 ? "★ " : ""}
                   {category.name}
                 </span>
               ))}

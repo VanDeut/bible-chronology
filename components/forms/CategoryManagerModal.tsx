@@ -26,6 +26,7 @@ export function CategoryManagerModal({ onClose }: CategoryManagerModalProps) {
   const addCategory = useTimelineStore((s) => s.addCategory);
   const updateCategory = useTimelineStore((s) => s.updateCategory);
   const deleteCategory = useTimelineStore((s) => s.deleteCategory);
+  const moveCategory = useTimelineStore((s) => s.moveCategory);
 
   const [editing, setEditing] = useState<Category | null>(null);
   const [name, setName] = useState("");
@@ -74,12 +75,35 @@ export function CategoryManagerModal({ onClose }: CategoryManagerModalProps) {
   return (
     <ModalOverlay onClose={onClose} title="Manage Categories">
       <div className="space-y-4">
+        <p className="text-xs text-[var(--muted)]">
+          List order sets the top-to-bottom order of category bands on the timeline.
+        </p>
         <ul className="space-y-2">
-          {categories.map((cat) => (
+          {categories.map((cat, index) => (
             <li
               key={cat.id}
               className="flex items-center gap-3 rounded-xl border border-[var(--border)] px-3 py-2"
             >
+              <span className="flex flex-col -my-1">
+                <button
+                  type="button"
+                  onClick={() => moveCategory(cat.id, -1)}
+                  disabled={index === 0}
+                  aria-label={`Move ${cat.name} up`}
+                  className="px-1 text-xs leading-none text-[var(--muted)] hover:text-[var(--foreground)] disabled:opacity-30"
+                >
+                  ▲
+                </button>
+                <button
+                  type="button"
+                  onClick={() => moveCategory(cat.id, 1)}
+                  disabled={index === categories.length - 1}
+                  aria-label={`Move ${cat.name} down`}
+                  className="px-1 text-xs leading-none text-[var(--muted)] hover:text-[var(--foreground)] disabled:opacity-30"
+                >
+                  ▼
+                </button>
+              </span>
               <span
                 className="h-4 w-4 shrink-0 rounded-full"
                 style={{ backgroundColor: cat.color }}

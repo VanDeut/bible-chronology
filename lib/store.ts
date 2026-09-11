@@ -41,6 +41,8 @@ interface TimelineStore {
   addCategory: (cat: Omit<Category, "id" | "createdAt" | "updatedAt">) => void;
   updateCategory: (id: string, updates: Partial<Category>) => void;
   deleteCategory: (id: string) => void;
+  /** Shift a category one step up/down; list order = band order on the timeline. */
+  moveCategory: (id: string, direction: -1 | 1) => void;
 
   findOrAddCategory: (name: string) => string;
 
@@ -226,6 +228,17 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
         }),
       },
     }));
+    get().persist();
+  },
+
+  moveCategory: (id, direction) => {
+    const list = get().data.categories;
+    const from = list.findIndex((c) => c.id === id);
+    const to = from + direction;
+    if (from === -1 || to < 0 || to >= list.length) return;
+    const next = [...list];
+    [next[from], next[to]] = [next[to], next[from]];
+    set((s) => ({ data: { ...s.data, categories: next } }));
     get().persist();
   },
 

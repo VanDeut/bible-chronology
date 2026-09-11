@@ -47,6 +47,10 @@ export function EventFormModal({ onClose, editId }: EventFormModalProps) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<Set<string>>(
     () => new Set(initialCategoryIds)
   );
+  // Primary = categoryIds[0]; decides the band (and color) on the timeline.
+  const [primaryCategoryId, setPrimaryCategoryId] = useState<string>(
+    initialCategoryIds[0] ?? defaultCategoryId
+  );
   const [links, setLinks] = useState<string[]>(existing?.links ?? []);
   const [imageUrl, setImageUrl] = useState(existing?.imageUrl ?? "");
   const [imageUrlDraft, setImageUrlDraft] = useState(existing?.imageUrl ?? "");
@@ -70,6 +74,11 @@ export function EventFormModal({ onClose, editId }: EventFormModalProps) {
       if (next.has(id)) {
         if (next.size <= 1) return prev;
         next.delete(id);
+        if (id === primaryCategoryId) {
+          // Hand primary to the first remaining selection (in list order).
+          const fallback = categories.find((c) => next.has(c.id))?.id;
+          if (fallback) setPrimaryCategoryId(fallback);
+        }
       } else {
         next.add(id);
       }
@@ -99,9 +108,15 @@ export function EventFormModal({ onClose, editId }: EventFormModalProps) {
       draft && isValidImageUrl(draft) ? draft : imageUrl.trim();
 
     setSubmitting(true);
-    const orderedIds = categories
-      .filter((c) => selectedCategoryIds.has(c.id))
-      .map((c) => c.id);
+    const primary = selectedCategoryIds.has(primaryCategoryId)
+      ? primaryCategoryId
+      : categories.find((c) => selectedCategoryIds.has(c.id))?.id;
+    const orderedIds = [
+      ...(primary ? [primary] : []),
+      ...categories
+        .filter((c) => selectedCategoryIds.has(c.id) && c.id !== primary)
+        .map((c) => c.id),
+    ];
     const categoryIds = normalizeEventCategoryIds(
       orderedIds,
       categories.map((c) => c.id)
@@ -148,28 +163,54 @@ export function EventFormModal({ onClose, editId }: EventFormModalProps) {
 
         <FormField label="Categories" error={errors.categories}>
           <p className="mb-2 text-xs text-[var(--muted)]">
-            Select one or more. The first listed category sets the timeline color.
+            Select one or more. The primary category decides the band and color on
+            the timeline.
           </p>
           <div className="max-h-48 space-y-1 overflow-y-auto rounded-xl border border-[var(--border)] bg-[var(--background)] p-2">
-            {categories.map((c) => (
-              <label
-                key={c.id}
-                className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2 py-2 transition hover:bg-[var(--surface)]"
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedCategoryIds.has(c.id)}
-                  onChange={() => toggleCategory(c.id)}
-                  className="accent-indigo-500"
-                />
-                <span
-                  className="h-2.5 w-2.5 shrink-0 rounded-full"
-                  style={{ backgroundColor: c.color }}
-                  aria-hidden
-                />
-                <span className="text-sm">{c.name}</span>
-              </label>
-            ))}
+            {categories.map((c) => {
+              const checked = selectedCategoryIds.has(c.id);
+              const isPrimary = checked && c.id === primaryCategoryId;
+              return (
+                <div
+                  key={c.id}
+                  className="flex items-center gap-2.5 rounded-lg px-2 py-2 transition hover:bg-[var(--surface)]"
+                >
+                  <label className="flex flex-1 cursor-pointer items-center gap-2.5">
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleCategory(c.id)}
+                      className="accent-indigo-500"
+                    />
+                    <span
+                      className="h-2.5 w-2.5 shrink-0 rounded-full"
+                      style={{ backgroundColor: c.color }}
+                      aria-hidden
+                    />
+                    <span className="text-sm">{c.name}</span>
+                  </label>
+                  {checked && selectedCategoryIds.size > 1 && (
+                    <label
+                      className={`flex cursor-pointer items-center gap-1 text-xs ${
+                        isPrimary
+                          ? "text-indigo-500"
+                          : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                      }`}
+                      title="Primary category sets the band and color"
+                    >
+                      <input
+                        type="radio"
+                        name="primary-category"
+                        checked={isPrimary}
+                        onChange={() => setPrimaryCategoryId(c.id)}
+                        className="accent-indigo-500"
+                      />
+                      Primary
+                    </label>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </FormField>
 

@@ -81,6 +81,24 @@ export interface LayoutEvent {
   floatTier: number;
   /** Dedicated row for point-event labels (avoids overlap in crowded columns). */
   labelRow: number;
+  /** Index into TimelineLayout.bands. */
+  bandIndex: number;
+}
+
+/** One horizontal stripe of lanes; events grouped by their band key (primary category). */
+export interface LayoutBand {
+  key: string;
+  laneCount: number;
+  /** Lanes used only by span/range events (point labels stack below). */
+  rangeLaneCount: number;
+  /** Highest featured-circle float tier in this band, or -1 when none. */
+  maxFloatTier: number;
+}
+
+export interface BandSpec {
+  /** Band keys in display order; keys not listed are appended in first-seen order. */
+  order: string[];
+  keyOf: (event: TimelineEvent) => string;
 }
 
 export interface LayoutBackground {
@@ -98,9 +116,11 @@ export interface TimelineLayout {
   events: LayoutEvent[];
   backgrounds: LayoutBackground[];
   backgroundRowCount: number;
+  /** Total lanes across all bands. */
   laneCount: number;
-  /** Lanes used only by span/range events (point labels stack below). */
+  /** Range lanes of the first band (single-band layouts only). */
   rangeLaneCount: number;
+  bands: LayoutBand[];
 }
 
 function eventsOverlap(a: TimelineEvent, b: TimelineEvent): boolean {
@@ -315,11 +335,94 @@ function assignPointLabelRows(
   return rowMap;
 }
 
+/** Split events into ordered bands. Without a spec, everything shares one band. */
+function groupEventsIntoBands(
+  events: TimelineEvent[],
+  bands?: BandSpec
+): { key: string; events: TimelineEvent[] }[] {
+  if (!bands) return [{ key: "", events }];
+
+  const byKey = new Map<string, TimelineEvent[]>();
+  for (const event of events) {
+    const key = bands.keyOf(event);
+    const list = byKey.get(key);
+    if (list) list.push(event);
+    else byKey.set(key, [event]);
+  }
+
+  const ordered: { key: string; events: TimelineEvent[] }[] = [];
+  for (const key of bands.order) {
+    const list = byKey.get(key);
+    if (!list) continue;
+    ordered.push({ key, events: list });
+    byKey.delete(key);
+  }
+  for (const [key, list] of byKey) ordered.push({ key, events: list });
+  return ordered;
+}
+
+/** Lane, float-tier and label-row packing for the events of one band. */
+function layoutSingleBand(
+  events: TimelineEvent[],
+  metricsById: Map<string, { x: number; width: number }>,
+  pixelsPerDay: number
+): {
+  events: Omit<LayoutEvent, "bandIndex">[];
+  summary: Omit<LayoutBand, "key">;
+} {
+  const laneMap = assignLanes(events, metricsById, pixelsPerDay);
+
+  const layoutEvents: LayoutEvent[] = events.map((event) => {
+    const metrics = metricsById.get(event.id)!;
+    return {
+      event,
+      x: metrics.x,
+      width: metrics.width,
+      lane: laneMap.get(event.id) ?? 0,
+      floatTier: 0,
+      labelRow: 0,
+      bandIndex: 0,
+    };
+  });
+
+  const floatTierMap = assignFeaturedFloatTiers(layoutEvents, pixelsPerDay);
+  const pointLabelRowMap = assignPointLabelRows(layoutEvents, pixelsPerDay);
+
+  let maxLane = events.length > 0 ? Math.max(...laneMap.values()) + 1 : 1;
+  let maxLabelRow = 0;
+  let maxFloatTier = -1;
+
+  for (const entry of layoutEvents) {
+    entry.floatTier = floatTierMap.get(entry.event.id) ?? 0;
+    entry.labelRow = pointLabelRowMap.get(entry.event.id) ?? 0;
+    maxLabelRow = Math.max(maxLabelRow, entry.labelRow);
+    if (usesFeaturedCircle(entry.event)) {
+      maxFloatTier = Math.max(maxFloatTier, entry.floatTier);
+    }
+  }
+
+  const rangeEvents = layoutEvents.filter((e) => !isPointEvent(e.event));
+  const rangeLaneCount =
+    rangeEvents.length > 0
+      ? Math.max(...rangeEvents.map((e) => e.lane)) + 1
+      : 0;
+
+  if (pixelsPerDay >= LABEL_ZOOM_THRESHOLD && maxLabelRow > 0) {
+    maxLane = Math.max(maxLane, rangeLaneCount + maxLabelRow + 1);
+  }
+
+  return {
+    events: layoutEvents,
+    summary: { laneCount: maxLane, rangeLaneCount, maxFloatTier },
+  };
+}
+
 export function computeTimelineLayout(
   events: TimelineEvent[],
   backgrounds: Background[],
   pixelsPerDay: number,
-  paddingDays = TIMELINE_EDGE_PADDING_DAYS
+  paddingDays = TIMELINE_EDGE_PADDING_DAYS,
+  bands?: BandSpec
 ): TimelineLayout {
   const bounds = getTimelineBounds(events, backgrounds);
   const timelineStartDay = bounds.startDay - paddingDays;
@@ -337,44 +440,20 @@ export function computeTimelineLayout(
     metricsById.set(event.id, { x, width });
   }
 
-  const laneMap = assignLanes(events, metricsById, pixelsPerDay);
+  const grouped = groupEventsIntoBands(events, bands);
+  const layoutEvents: LayoutEvent[] = [];
+  const layoutBands: LayoutBand[] = [];
 
-  const layoutEvents: LayoutEvent[] = events.map((event) => {
-    const metrics = metricsById.get(event.id)!;
-    return {
-      event,
-      x: metrics.x,
-      width: metrics.width,
-      lane: laneMap.get(event.id) ?? 0,
-      floatTier: 0,
-      labelRow: 0,
-    };
+  grouped.forEach((bandEvents, bandIndex) => {
+    const band = layoutSingleBand(bandEvents.events, metricsById, pixelsPerDay);
+    layoutBands.push({ key: bandEvents.key, ...band.summary });
+    for (const entry of band.events) {
+      layoutEvents.push({ ...entry, bandIndex });
+    }
   });
 
-  const floatTierMap = assignFeaturedFloatTiers(layoutEvents, pixelsPerDay);
-  const pointLabelRowMap = assignPointLabelRows(layoutEvents, pixelsPerDay);
-
-  let maxLane = events.length > 0 ? Math.max(...laneMap.values()) + 1 : 1;
-  let maxLabelRow = 0;
-
-  for (const entry of layoutEvents) {
-    entry.floatTier = floatTierMap.get(entry.event.id) ?? 0;
-    entry.labelRow = pointLabelRowMap.get(entry.event.id) ?? 0;
-    maxLabelRow = Math.max(maxLabelRow, entry.labelRow);
-  }
-
-  const rangeLaneCount =
-    layoutEvents.filter((e) => !isPointEvent(e.event)).length > 0
-      ? Math.max(
-          ...layoutEvents
-            .filter((e) => !isPointEvent(e.event))
-            .map((e) => e.lane)
-        ) + 1
-      : 0;
-
-  if (pixelsPerDay >= LABEL_ZOOM_THRESHOLD && maxLabelRow > 0) {
-    maxLane = Math.max(maxLane, rangeLaneCount + maxLabelRow + 1);
-  }
+  const maxLane = layoutBands.reduce((sum, b) => sum + b.laneCount, 0) || 1;
+  const rangeLaneCount = layoutBands[0]?.rangeLaneCount ?? 0;
 
   const backgroundRowMap = assignBackgroundRows(backgrounds);
   const layoutBackgrounds: LayoutBackground[] = backgrounds.map((bg) => {
@@ -400,19 +479,28 @@ export function computeTimelineLayout(
     backgroundRowCount,
     laneCount: maxLane,
     rangeLaneCount,
+    bands: layoutBands,
   };
 }
 
 export function useTimelineLayout(
   events: TimelineEvent[],
   backgrounds: Background[],
-  pixelsPerDay: number
+  pixelsPerDay: number,
+  bands?: BandSpec
 ): TimelineLayout {
   const ppd = clampZoom(pixelsPerDay);
 
   return useMemo(
-    () => computeTimelineLayout(events, backgrounds, ppd),
-    [events, backgrounds, ppd]
+    () =>
+      computeTimelineLayout(
+        events,
+        backgrounds,
+        ppd,
+        TIMELINE_EDGE_PADDING_DAYS,
+        bands
+      ),
+    [events, backgrounds, ppd, bands]
   );
 }
 

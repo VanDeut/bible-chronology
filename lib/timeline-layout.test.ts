@@ -118,3 +118,26 @@ describe("timeline-layout lanes", () => {
     expect(layout.backgroundRowCount).toBe(2);
   });
 });
+
+describe("timeline-layout bands", () => {
+  it("groups events by band key in the given order, hiding empty bands", () => {
+    const a = { ...makePointEvent("a", "0100-01-01"), categoryIds: ["cat-work"] };
+    const b = { ...makePointEvent("b", "0100-01-01"), categoryIds: ["cat-life"] };
+    const c = { ...makePointEvent("c", "0200-01-01"), categoryIds: ["cat-work"] };
+
+    const layout = computeTimelineLayout([a, b, c], [], 2, 0, {
+      order: ["cat-default", "cat-life", "cat-work"],
+      keyOf: (e) => e.categoryIds[0],
+    });
+
+    expect(layout.bands.map((band) => band.key)).toEqual(["cat-life", "cat-work"]);
+    const byId = new Map(layout.events.map((e) => [e.event.id, e]));
+    expect(byId.get("b")!.bandIndex).toBe(0);
+    expect(byId.get("a")!.bandIndex).toBe(1);
+    expect(byId.get("c")!.bandIndex).toBe(1);
+    // Same-day events in different bands do not need separate lanes.
+    expect(byId.get("a")!.lane).toBe(0);
+    expect(byId.get("b")!.lane).toBe(0);
+    expect(layout.laneCount).toBe(2);
+  });
+});
