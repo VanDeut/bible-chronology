@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-12T01:42:04.506Z",
+  "exportedAt": "2026-09-12T01:43:11.656Z",
   "data": {
     "events": [
       {
@@ -454,7 +454,7 @@
       },
       {
         "id": "51e8f71d-f9b6-4751-8a15-9e1527b5a76e",
-        "title": "400 yr affliction (Ge 15:13)",
+        "title": "400 yr affliction",
         "startDate": "-1913-03-01",
         "endDate": "-1513-03-01",
         "notes": "Ge 15:13\n\nBegan when Ishmail mocked Isaac at the time of his being weaned, and ended when the Israelites left Egypt",
@@ -462,8 +462,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Genesis 15:13",
         "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T19:23:37.434Z"
+        "updatedAt": "2026-09-12T01:43:08.862Z"
       },
       {
         "id": "88c2a0be-d05a-4e63-b52c-ae0bf2b9eac0",
