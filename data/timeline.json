@@ -7153,13 +7153,14 @@
         "id": "524d843b-bc4d-4866-b328-7a73ca14267c",
         "title": "Israel divided into two kingdoms",
         "startDate": "-0997-01-01",
-        "notes": "",
+        "notes": "From the division in 997 B.C.E. to the fall of the ten-tribe kingdom to Assyria in 740 B.C.E. (both per the Publications Index).",
         "categoryIds": [
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
         "createdAt": "2026-09-12T01:58:12.305668Z",
-        "updatedAt": "2026-09-12T01:58:12.305668Z"
+        "updatedAt": "2026-09-12T02:05:24.218344Z",
+        "endDate": "-0740-01-01"
       },
       {
         "id": "792582f0-8475-4a42-afb2-23dd64896772",
@@ -11104,15 +11105,16 @@
       },
       {
         "id": "28797d69-6ec1-4213-891b-6e26256ced2d",
-        "title": "Korean War begins (June 25)",
+        "title": "Korean War",
         "startDate": "1950-06-25",
-        "notes": "",
+        "notes": "Start from the Publications Index (June 25, 1950). End = armistice of July 27, 1953, which is not in the Index.",
         "categoryIds": [
           "48132997-43f0-427f-96cb-bc165f8e7475"
         ],
         "links": [],
         "createdAt": "2026-09-12T01:58:12.335595Z",
-        "updatedAt": "2026-09-12T01:58:12.335595Z"
+        "updatedAt": "2026-09-12T02:05:24.218344Z",
+        "endDate": "1953-07-27"
       },
       {
         "id": "823c316e-12d3-4af3-afef-6670767c3ad1",
@@ -12686,6 +12688,19 @@
         "links": [],
         "createdAt": "2026-09-12T01:58:50.522111Z",
         "updatedAt": "2026-09-12T01:58:50.522111Z"
+      },
+      {
+        "id": "639adb56-8315-485e-86e5-184d610dda1c",
+        "title": "World War I",
+        "startDate": "1914-07-28",
+        "endDate": "1918-11-11",
+        "notes": "Start date (July 28, 1914, Austria-Hungary declares war on Serbia) is the conventional beginning and is not in the Publications Index; end from the Index: “November 11, World War I ends.”",
+        "categoryIds": [
+          "48132997-43f0-427f-96cb-bc165f8e7475"
+        ],
+        "links": [],
+        "createdAt": "2026-09-12T02:05:24.218344Z",
+        "updatedAt": "2026-09-12T02:05:24.218344Z"
       }
     ],
     "backgrounds": [],
