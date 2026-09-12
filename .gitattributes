@@ -1,0 +1,3 @@
+# The app commits this file itself; a textual auto-merge splices two JSON
+# versions into invalid JSON. Force a conflict instead so it is resolved by hand.
+data/timeline.json merge=binary
