@@ -128,6 +128,29 @@ async function describeError(res: Response): Promise<GitHubSyncError> {
   );
 }
 
+/**
+ * Read-only bootstrap for a fresh browser with no token: fetch the committed
+ * data file straight from the public repo so the timeline is never empty.
+ */
+export async function fetchPublicSnapshot(
+  repo: string,
+  branch = DEFAULT_SYNC_BRANCH,
+  path = DEFAULT_SYNC_PATH
+): Promise<TimelineData | null> {
+  if (!repo) return null;
+  try {
+    const res = await fetch(
+      `https://raw.githubusercontent.com/${repo}/${branch}/${path}?t=${Date.now()}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) return null;
+    const { data } = parseTimelineData(await res.json());
+    return data;
+  } catch {
+    return null;
+  }
+}
+
 export interface RemoteSnapshot {
   data: TimelineData;
   sha: string;

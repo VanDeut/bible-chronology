@@ -18,7 +18,12 @@ import {
   clearSavedTimelineView,
   notifyTimelineDataCleared,
 } from "./timeline-view-storage";
-import { useGitHubSync } from "./github-sync";
+import {
+  useGitHubSync,
+  fetchPublicSnapshot,
+  loadSyncConfig,
+  DEFAULT_SYNC_REPO,
+} from "./github-sync";
 
 interface TimelineStore {
   data: TimelineData;
@@ -82,7 +87,23 @@ export const useTimelineStore = create<TimelineStore>((set, get) => ({
   previewEvent: null,
 
   initialize: async () => {
-    const local = normalizeTimelineData(await loadLocalData());
+    let local = normalizeTimelineData(await loadLocalData());
+
+    // Fresh browser with nothing stored and no sync token: show the public
+    // copy from the repo rather than an empty timeline.
+    const isEmpty = local.events.length === 0 && local.backgrounds.length === 0;
+    if (isEmpty && !loadSyncConfig() && DEFAULT_SYNC_REPO) {
+      const remote = await fetchPublicSnapshot(DEFAULT_SYNC_REPO);
+      if (remote && remote.events.length > 0) {
+        local = remote;
+        await saveLocalData(local);
+        showToast({
+          message:
+            "Loaded the timeline from GitHub. Connect GitHub sync (Menu) to save changes back.",
+          duration: 10000,
+        });
+      }
+    }
     set({ data: local, isLoaded: true });
 
     useGitHubSync.getState().attach({
