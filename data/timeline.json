@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-12T01:41:44.028Z",
+  "exportedAt": "2026-09-12T01:42:04.506Z",
   "data": {
     "events": [
       {
@@ -100,14 +100,14 @@
         "endDate": "-2370-01-01",
         "notes": "Methuselah: 969 yrs old",
         "categoryIds": [
-          "f9748fc5-f907-4d01-8220-6d3add815279"
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "relatedEventIds": [
           "b4cfd0e4-92dc-4dfb-8f26-46d875c93369"
         ],
         "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T19:23:37.433Z"
+        "updatedAt": "2026-09-12T01:42:01.729Z"
       },
       {
         "id": "b8af0914-7e8e-45fd-8b7d-bcc75af2ada7",
