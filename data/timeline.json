@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-11T19:31:01.860Z",
+  "exportedAt": "2026-09-12T01:41:44.028Z",
   "data": {
     "events": [
       {
@@ -39,11 +39,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "cf861201-3903-47b1-9061-1c379046bbe4"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "0603ba78-b730-4343-bf41-4701ff698f00",
@@ -55,11 +55,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "4427a5b4-f344-43cf-9f35-7468f533610b"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "81d2aae0-b7d0-4062-af98-89c1ff9ced07",
@@ -68,14 +68,14 @@
         "endDate": "-2604-01-01",
         "notes": "Jared: 962 yrs old",
         "categoryIds": [
-          "f9748fc5-f907-4d01-8220-6d3add815279"
+          "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
         "relatedEventIds": [
           "23c73cda-b4fb-4dc8-90d6-8d0f870bcb21"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-12T01:41:41.263Z"
       },
       {
         "id": "b4cfd0e4-92dc-4dfb-8f26-46d875c93369",
@@ -87,11 +87,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "81d2aae0-b7d0-4062-af98-89c1ff9ced07"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "c34664bb-d680-4b76-9772-305e093ebeb2",
@@ -103,11 +103,11 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T19:23:37.433Z",
         "relatedEventIds": [
           "b4cfd0e4-92dc-4dfb-8f26-46d875c93369"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T19:23:37.433Z"
       },
       {
         "id": "b8af0914-7e8e-45fd-8b7d-bcc75af2ada7",
@@ -119,11 +119,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "c34664bb-d680-4b76-9772-305e093ebeb2"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "66a80154-8b00-46dc-85d1-d3d7376d5b69",
@@ -135,11 +135,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "b8af0914-7e8e-45fd-8b7d-bcc75af2ada7"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "4a7e6e6c-b8de-4385-8b31-e3026cd02649",
@@ -164,11 +164,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "66a80154-8b00-46dc-85d1-d3d7376d5b69"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "1796f848-2472-4e01-8c30-850565864387",
@@ -284,11 +284,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.433Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "5a8a0b55-a5ee-4e75-9220-287f25133814"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.433Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "8e4f8aa0-9d90-4030-8c7f-ac31da16d9ec",
@@ -365,11 +365,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "f2c3e449-cec0-4351-b1e1-b842550afc4f"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.434Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "7fef12de-a1a1-4147-b865-7ce45dfb7cfa",
@@ -446,11 +446,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "f2c3e449-cec0-4351-b1e1-b842550afc4f"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.434Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "51e8f71d-f9b6-4751-8a15-9e1527b5a76e",
@@ -501,11 +501,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "419460fc-28b4-40f3-be91-1bfdc15d480e"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.434Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "b4e8bd06-9e80-4b75-b600-a870e3e0139e",
@@ -517,11 +517,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "419460fc-28b4-40f3-be91-1bfdc15d480e"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.434Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "b924de4d-626b-402b-8b2c-d5c300c53b8e",
@@ -559,11 +559,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "d9bb23a8-5d7a-4824-9349-e6d5f57c7dc4"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.434Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "989deccc-fc02-4277-895a-04371f6a2e08",
@@ -705,11 +705,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.434Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "19d7bbbf-3591-4ea9-8a7a-ba9830876288"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.434Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "2381b865-ddc0-41b2-b6f1-ef9f2d1ac410",
@@ -734,11 +734,11 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T20:54:47.981026Z",
         "relatedEventIds": [
           "19d7bbbf-3591-4ea9-8a7a-ba9830876288"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T20:54:47.981026Z"
       },
       {
         "id": "19d7bbbf-3591-4ea9-8a7a-ba9830876288",
@@ -1153,11 +1153,11 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "aa54db1d-96d2-4220-9b03-31953fab0087"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "1c68784e-642e-4662-a09b-035d5720ee12",
@@ -1208,11 +1208,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "4b9229af-dbc6-471b-8247-1c82d75924f0"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "5b1e3f89-0d49-40f9-8cfc-d9cee775725d",
@@ -1224,11 +1224,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "86611036-f142-42c7-a209-376ebb6bded2"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "bdd6813d-a613-4146-8a9e-72036975f39c",
@@ -1240,11 +1240,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "5b1e3f89-0d49-40f9-8cfc-d9cee775725d"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "ccae9278-57e3-4452-ad91-04de36afc62c",
@@ -1256,11 +1256,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "4230605e-4775-4d30-a183-2067d4367847"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "7acb20be-fa8c-4efc-bc28-9381b6e7c40e",
@@ -1285,11 +1285,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "7acb20be-fa8c-4efc-bc28-9381b6e7c40e"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "dba48209-0288-49d1-8bea-78fdfe5ca5a2",
@@ -1340,11 +1340,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "d9e7278d-c279-4669-98d3-a88d9a2d1f36"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "8747efc0-e942-421b-aaeb-90aae1658402",
@@ -1369,11 +1369,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "bdd6813d-a613-4146-8a9e-72036975f39c"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "ebdfea8e-a090-4a6f-9eea-9600bd8b3d49",
@@ -1385,11 +1385,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "64ebb9fd-7289-4259-900f-d2d5c9ac4bd1"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "e56a142d-18bb-423a-9419-d00a16af7970",
@@ -1401,11 +1401,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "64ebb9fd-7289-4259-900f-d2d5c9ac4bd1"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "b1aca361-caf9-4589-b274-8a90fad5f44c",
@@ -1430,11 +1430,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "60c8ab2d-8492-4398-b0ce-4e9cebf47fcb"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "7296e39b-8932-4d29-9c7e-be8ea0bce5ac",
@@ -1446,11 +1446,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "e95c8435-2898-4e96-8f74-52d58c567960"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "71655f2f-b54e-43ec-96ea-29513b3fb1d1",
@@ -1488,11 +1488,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "7296e39b-8932-4d29-9c7e-be8ea0bce5ac"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "aca371dd-12fa-439c-b76b-a72963322021",
@@ -1504,11 +1504,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.435Z",
-        "updatedAt": "2026-09-11T19:23:37.435Z",
         "relatedEventIds": [
           "096ed1be-ff06-491f-934b-a289026b1616"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.435Z",
+        "updatedAt": "2026-09-11T19:23:37.435Z"
       },
       {
         "id": "732d3410-56b8-468a-b6cc-d67a737e9531",
@@ -1533,11 +1533,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "aca371dd-12fa-439c-b76b-a72963322021"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "37b3e3c6-9db3-46c1-96df-3472e7d9dd96",
@@ -1549,11 +1549,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "bd5285c4-2673-4c52-a5d1-dd3144fd063f"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "83ebf234-f7d4-4433-b358-69b136aedadf",
@@ -1565,11 +1565,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "8e4ce8d9-1e2b-4bb9-9cfb-29da47e30ab6"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "8363616d-3b6c-4575-b4ad-009f57f31af0",
@@ -1594,11 +1594,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "37b3e3c6-9db3-46c1-96df-3472e7d9dd96"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "712a4997-d80e-45e3-a69a-3c31075d41b3",
@@ -1636,11 +1636,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "83ebf234-f7d4-4433-b358-69b136aedadf"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "c20f372c-4b55-48a1-9fb8-b39cd1ab5c04",
@@ -1678,11 +1678,11 @@
           "d8f2aa26-f0dc-49c8-ad4c-4f9ba9ed6ceb"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "c2f8eaad-d5d8-447a-979e-d603906883aa"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "15ded584-b336-4405-a8cb-a6ede766fbbd",
@@ -1733,11 +1733,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "b53066c2-c679-4382-b028-1116ef927f82"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "398850be-3a4e-4a6c-bd4c-2f0f21b0811d",
@@ -1762,11 +1762,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "35a7ce5a-7ef4-40fc-b2f4-49f973fe3afb"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "7e83033d-8eb7-4355-ade8-14cec0725a28",
@@ -1791,11 +1791,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "df3cabf5-e37b-49ea-8c5c-1142a291857c"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "3e89976d-740b-4fe1-ba2d-52f8d4060c2b",
@@ -1807,11 +1807,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "429d5ce0-159d-48dc-8ec7-ce1293e94f5f"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "060c5da9-8bfb-4d47-a887-6662de732b26",
@@ -1823,11 +1823,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "3e89976d-740b-4fe1-ba2d-52f8d4060c2b"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "671d1265-65c8-42d6-a64e-a2d89e05b92c",
@@ -1839,11 +1839,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "060c5da9-8bfb-4d47-a887-6662de732b26"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "e89a9361-6498-4fd5-b8f3-c2404f16373f",
@@ -1881,11 +1881,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "671d1265-65c8-42d6-a64e-a2d89e05b92c"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "ad508577-4b46-4dbc-9ec9-a9b6e29772f3",
@@ -1897,11 +1897,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "671d1265-65c8-42d6-a64e-a2d89e05b92c"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "f91e4891-1b14-41e3-985c-5f472576670d",
@@ -1926,11 +1926,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "d0a4b5b0-bcf8-49ed-8033-4a6ceaba3be6"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "db91640b-a75c-43fd-b5c6-e53f90ed5f99",
@@ -1981,11 +1981,11 @@
           "f720d5ab-f433-4309-945e-fc46337fc1c7"
         ],
         "links": [],
-        "createdAt": "2026-09-11T19:23:37.436Z",
-        "updatedAt": "2026-09-11T19:23:37.436Z",
         "relatedEventIds": [
           "671d1265-65c8-42d6-a64e-a2d89e05b92c"
-        ]
+        ],
+        "createdAt": "2026-09-11T19:23:37.436Z",
+        "updatedAt": "2026-09-11T19:23:37.436Z"
       },
       {
         "id": "866e916d-8f4e-47a4-9509-9b89b59f6e4b",
@@ -2607,91 +2607,91 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
+        "scripture": "Ge 5:32; 10:21",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ge 5:32; 10:21"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "c89dd9b2-a536-47b2-8754-f3a0f0df01d3",
         "title": "Arpachshad",
         "startDate": "-2368-01-01",
+        "endDate": "-1930-01-01",
         "notes": "Born 2368 B.C.E. two years after the Flood (Watch Tower Publications Index (Dates)); lived 438 years (Ge 11:12-13), so died 1930 B.C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
         "scripture": "Ge 11:10-13; Lu 3:36",
-        "endDate": "-1930-01-01",
         "relatedEventIds": [
           "b02eb1a6-8262-4075-901b-ced490220680"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:31:55.986385Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "83d3eb8f-f2ba-429d-aa33-d51b57d651af",
         "title": "Rebekah",
         "startDate": "-1900-01-01",
+        "endDate": "-1775-01-01",
         "notes": "Born 1900 B.C.E., died 1775 B.C.E. (age c. 125)",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "-1775-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "cdd921e8-0faa-4c3c-8e32-47d9a33cd18e",
         "title": "Caleb",
         "startDate": "-1552-01-01",
+        "endDate": "-1450-01-01",
         "notes": "Born 1552 B.C.E., died 1450 B.C.E. (age c. 102)",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "-1450-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "9272934c-3856-4b6c-84d1-4351f95580dd",
         "title": "Rahab",
         "startDate": "-1500-01-01",
+        "endDate": "-1400-01-01",
         "notes": "Born 1500 B.C.E., died 1400 B.C.E. (age c. 100)",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "-1400-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "faf7fe92-9662-4320-97df-8bbd1b60956e",
         "title": "Confucius",
         "startDate": "-0551-01-01",
+        "endDate": "-0479-01-01",
         "notes": "Born 551 B.C.E., died 479 B.C.E. (age 72)",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "-0479-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "1bb57538-9aa4-45bc-b6d9-c9464758c2c8",
         "title": "Alexander the Great",
         "startDate": "-0356-01-01",
+        "endDate": "-0323-01-01",
         "notes": "Born 356 B.C.E., died 323 B.C.E. (age 32)",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "-0323-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "7c3e9236-ddac-4f4e-a168-510b9bb0feca",
@@ -2733,66 +2733,66 @@
         "id": "e537a4d6-47a1-4208-b63c-b6e21cc86012",
         "title": "Mary (Lazarus’ sister)",
         "startDate": "-0015-01-01",
+        "endDate": "0033-01-01",
         "notes": "Born 15 B.C.E., died 33 C.E. (Lazarus’ sister) dies)",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "0033-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "bfd22142-fe24-49d2-9f62-470ecb7cb6c4",
         "title": "Apostle John",
         "startDate": "-0005-01-01",
+        "endDate": "0100-01-01",
         "notes": "Born 5 B.C.E., died 100 C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "0100-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "4d4cccfe-6b95-44c2-884c-36e0dcb9c4d9",
         "title": "Apostle Peter",
         "startDate": "-0005-01-01",
+        "endDate": "0064-01-01",
         "notes": "Born 5 B.C.E., died 64 C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "0064-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "dd02ddfb-54e6-48ea-b121-824a4342fa13",
         "title": "Barnabas",
         "startDate": "-0005-01-01",
+        "endDate": "0055-01-01",
         "notes": "Born 5 B.C.E., died 55 C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "0055-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "83eccfa7-77e9-4d23-ba62-6166f36da233",
         "title": "Mary Magdalene",
         "startDate": "-0005-01-01",
+        "endDate": "0033-01-01",
         "notes": "Born 5 B.C.E., died 33 C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "0033-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "fc35ee61-ab68-4762-b1cf-c0caa9257198",
@@ -2822,14 +2822,14 @@
         "id": "c4b5153b-4a22-43c4-a798-001003835dad",
         "title": "Mark",
         "startDate": "0015-01-01",
+        "endDate": "0065-01-01",
         "notes": "Born 15 C.E., died 65 C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "0065-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "f7a968a8-c47e-4730-8250-536af1ba77cf",
@@ -3020,9 +3020,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Ge 12:4",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ge 12:4"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "a50463a3-9634-42f7-8571-5347f14259a0",
@@ -3033,9 +3033,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Ex 12:40-41; Ga 3:17",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ex 12:40-41; Ga 3:17"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "2b29947c-f7ed-48de-b2b0-1605e3eba04a",
@@ -3046,9 +3046,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Ac 13:17-20",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ac 13:17-20"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "0e9dc62b-95ca-43b9-bab1-e330e54d3adc",
@@ -3059,9 +3059,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Ge 21:8-9; Ga 4:29",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ge 21:8-9; Ga 4:29"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "81d556fd-379c-4d87-9ded-634113c2530a",
@@ -3096,9 +3096,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Ex 12:40-41; Ga 3:17",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ex 12:40-41; Ga 3:17"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "1be4475b-3a77-4479-b77b-fdc1e076b656",
@@ -3121,9 +3121,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Ac 13:17-20",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ac 13:17-20"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "9a5d349e-a160-46b7-9088-fb7365036fe5",
@@ -3182,9 +3182,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "2Sa 2:8-10",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "2Sa 2:8-10"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "99f3cc4d-15ee-46c3-a3c7-2d81f176e3cd",
@@ -3279,9 +3279,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "2Ch 16:1",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "2Ch 16:1"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "f2ce2de2-c6be-4be6-811d-8464a8edb501",
@@ -3328,9 +3328,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "2Ki 15:1",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "2Ki 15:1"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "9c026cbc-0f9b-4dd0-9b24-c378eb913f2d",
@@ -3389,9 +3389,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "2Ki 20:1-6",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "2Ki 20:1-6"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "74168047-7039-4147-bc99-b2249d429f61",
@@ -3750,9 +3750,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Da 2",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Da 2"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "97c4810b-a51b-463c-87ba-5189842ee869",
@@ -3799,9 +3799,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Jer 52:31-34",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Jer 52:31-34"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "ade4ebe6-53a6-4751-89d9-9bf31a8252e2",
@@ -3968,9 +3968,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Es 9:18-22",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Es 9:18-22"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "47820b60-ce80-4ccf-9973-e950c9d52818",
@@ -4065,9 +4065,9 @@
           "f9748fc5-f907-4d01-8220-6d3add815279"
         ],
         "links": [],
+        "scripture": "Neh 9",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Neh 9"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "180cd644-6647-4c4c-8d26-d3d344b387fa",
@@ -4421,14 +4421,14 @@
         "id": "144f09d6-8fd4-4da5-aa94-9de4a3979543",
         "title": "Rome becomes a world power",
         "startDate": "-0063-01-01",
+        "endDate": "-0030-01-01",
         "notes": "",
         "categoryIds": [
           "07a404f7-4096-4c19-b157-7fc06a648b77"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "-0030-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "1f592cbf-a4e8-4d63-9498-5c298ae10d24",
@@ -4614,14 +4614,14 @@
         "id": "4e5af534-3fab-4420-8eb8-abd31d514770",
         "title": "~ Annas becomes high priest",
         "startDate": "0006-01-01",
+        "endDate": "0007-01-01",
         "notes": "Date is circa 6 C.E. per the Watch Tower Publications Index.",
         "categoryIds": [
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "endDate": "0007-01-01"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "38ec1c54-53e9-4fc5-9796-df9df9da2f32",
@@ -4704,9 +4704,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Lu 3:1",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Lu 3:1"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "f5014eaa-5901-49f0-825d-d83809574e2e",
@@ -4765,9 +4765,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Joh 2:13-22",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Joh 2:13-22"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "fad9ce09-b090-45fe-96d8-2237bb033c89",
@@ -4778,9 +4778,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Joh 2:23",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Joh 2:23"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "43f278be-7b1a-4242-95c0-8d51ca2b59ab",
@@ -5439,9 +5439,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Ga 1:18-19",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ga 1:18-19"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "ccb4756e-91c1-4b17-a5a8-2ccdde7919ee",
@@ -5524,9 +5524,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "2Co 12:2",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "2Co 12:2"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "c53b95f0-9082-41be-8b68-a5f720098a51",
@@ -5585,9 +5585,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Ac 11:28",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ac 11:28"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "a54a462a-9597-4db0-ace2-a6f670022dd2",
@@ -5634,9 +5634,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Ac 11:28; 12:25",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ac 11:28; 12:25"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "d12e609c-b44c-4b3b-a2cf-8afe8325cb8e",
@@ -5707,9 +5707,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Ga 2:9",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ga 2:9"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "c392af51-20b2-4015-8e82-cdbf0fbbe307",
@@ -5720,9 +5720,9 @@
           "4ccbb5b9-a7b3-4d49-b4b8-93245e87b51a"
         ],
         "links": [],
+        "scripture": "Ga 2:11-14",
         "createdAt": "2026-09-11T20:31:55.986385Z",
-        "updatedAt": "2026-09-11T20:31:55.986385Z",
-        "scripture": "Ga 2:11-14"
+        "updatedAt": "2026-09-11T20:31:55.986385Z"
       },
       {
         "id": "f83c3812-cd79-4aff-87bc-df12c4a7eb2b",
@@ -6652,154 +6652,154 @@
         "id": "707768ec-9414-4c9c-a0f7-7445846ce197",
         "title": "Kenan",
         "startDate": "-3701-01-01",
+        "endDate": "-2791-01-01",
         "notes": "Born when Enosh was 90 (3791−90); lived 910 years. Computed from Ge 5:9-14 using Enosh’s birth year 3791 B.C.E. from the Watch Tower Publications Index (Dates).",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-2791-01-01",
         "scripture": "Ge 5:9-14; Lu 3:37",
         "relatedEventIds": [
           "0603ba78-b730-4343-bf41-4701ff698f00"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "23c73cda-b4fb-4dc8-90d6-8d0f870bcb21",
         "title": "Mahalalel",
         "startDate": "-3631-01-01",
+        "endDate": "-2736-01-01",
         "notes": "Born when Kenan was 70; lived 895 years. Computed from Ge 5:12-17 (Kenan 3701 B.C.E.). Insight on the Scriptures: “Mahalalel lived 895 years.”",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-2736-01-01",
         "scripture": "Ge 5:12-17; Lu 3:37",
         "relatedEventIds": [
           "707768ec-9414-4c9c-a0f7-7445846ce197"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "0964857e-2ecd-4f1f-b2b4-c7e621be7acc",
         "title": "Shelah",
         "startDate": "-2333-01-01",
+        "endDate": "-1900-01-01",
         "notes": "Insight on the Scriptures (Shelah): “born in 2333 B.C.E. and died in 1900 B.C.E.”",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-1900-01-01",
         "scripture": "Ge 11:12-15; Lu 3:35",
         "relatedEventIds": [
           "c89dd9b2-a536-47b2-8754-f3a0f0df01d3"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "6ef114d3-b7ca-4e5d-a75e-b6627eb1d3c6",
         "title": "Eber",
         "startDate": "-2303-01-01",
+        "endDate": "-1839-01-01",
         "notes": "Born when Shelah was 30; lived 464 years. Computed from Ge 11:14-17 (Shelah 2333 B.C.E.). Ancestor of the Hebrews.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-1839-01-01",
         "scripture": "Ge 11:14-17; Lu 3:35",
         "relatedEventIds": [
           "0964857e-2ecd-4f1f-b2b4-c7e621be7acc"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "0f9a8d96-40f4-42a5-8614-b9aaf6cb58be",
         "title": "Peleg",
         "startDate": "-2269-01-01",
+        "endDate": "-2030-01-01",
         "notes": "Insight on the Scriptures (Peleg): “lived 239 years (2269-2030 B.C.E.)”. In his days the earth was divided (Ge 10:25).",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-2030-01-01",
         "scripture": "Ge 10:25; Ge 11:16-19; Lu 3:35",
         "relatedEventIds": [
           "6ef114d3-b7ca-4e5d-a75e-b6627eb1d3c6"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "e7981c2b-0de9-4c4b-9588-327e5becde4e",
         "title": "Reu",
         "startDate": "-2239-01-01",
+        "endDate": "-2000-01-01",
         "notes": "Insight on the Scriptures (Reu): “lived 239 years (2239-2000 B.C.E.)”.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-2000-01-01",
         "scripture": "Ge 11:18-21; Lu 3:35",
         "relatedEventIds": [
           "0f9a8d96-40f4-42a5-8614-b9aaf6cb58be"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "9217a5e6-f0cc-44df-97c8-e9b7041e2118",
         "title": "Serug",
         "startDate": "-2207-01-01",
+        "endDate": "-1977-01-01",
         "notes": "Insight on the Scriptures (Serug): “lived 230 years (2207-1977 B.C.E.)”.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-1977-01-01",
         "scripture": "Ge 11:20-23; Lu 3:35",
         "relatedEventIds": [
           "e7981c2b-0de9-4c4b-9588-327e5becde4e"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "823eea09-c401-444b-a14b-b5f8bf8f9adc",
         "title": "Nahor",
         "startDate": "-2177-01-01",
+        "endDate": "-2029-01-01",
         "notes": "Insight on the Scriptures (Nahor): “lived 148 years (2177 to 2029 B.C.E.)”.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-2029-01-01",
         "scripture": "Ge 11:22-25; Lu 3:34",
         "relatedEventIds": [
           "9217a5e6-f0cc-44df-97c8-e9b7041e2118"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "5a8a0b55-a5ee-4e75-9220-287f25133814",
         "title": "Terah",
         "startDate": "-2148-01-01",
+        "endDate": "-1943-01-01",
         "notes": "Insight on the Scriptures (Terah): died at 205 in 1943 B.C.E. when Abraham was 75, so he was 130 at Abraham’s birth (2018 B.C.E.) and born 2148 B.C.E.",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "-1943-01-01",
         "scripture": "Ge 11:24-32; Lu 3:34",
         "relatedEventIds": [
           "823eea09-c401-444b-a14b-b5f8bf8f9adc"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "4c10cdf2-e64a-4a00-888a-0144ae98a0bc",
@@ -6810,12 +6810,12 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
         "scripture": "Ge 29:35; Lu 3:33",
         "relatedEventIds": [
           "d9bb23a8-5d7a-4824-9349-e6d5f57c7dc4"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "58e51a10-c1b5-433a-b19d-78e58d59db45",
@@ -6826,9 +6826,9 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
+        "scripture": "Nu 1:7; 1Ch 2:10; Lu 3:32",
         "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "scripture": "Nu 1:7; 1Ch 2:10; Lu 3:32"
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "288407a9-96ac-4976-a4f7-1a6ea1cb4519",
@@ -6839,27 +6839,27 @@
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
+        "scripture": "Ezr 2:2; Hag 1:1; Lu 3:27",
         "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "scripture": "Ezr 2:2; Hag 1:1; Lu 3:27"
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       },
       {
         "id": "f2a607da-72c7-436c-a090-347c773f9010",
         "title": "Jesus",
         "startDate": "-0002-10-01",
+        "endDate": "0033-03-14",
         "notes": "Born about Ethanim (October) 2 B.C.E., died Nisan 14, 33 C.E. (Watch Tower Publications Index (Dates); Insight on the Scriptures, Jesus Christ). Lineage per Lu 3:23-38 (natural, through Mary) and Mt 1:1-16 (legal, through Joseph).",
         "categoryIds": [
           "8e4028bc-fd31-4bcf-8fce-b73faf4aa6f6"
         ],
         "links": [],
-        "createdAt": "2026-09-11T20:48:14.780883Z",
-        "updatedAt": "2026-09-11T20:48:14.780883Z",
-        "endDate": "0033-03-14",
         "scripture": "Lu 2:1-7; Lu 3:23-38; Mt 1:1-16",
         "relatedEventIds": [
           "28cb812c-9194-4d0e-94be-5e15df970107",
           "a796bbd8-ac44-48d7-9dd8-454ca65ac11c"
-        ]
+        ],
+        "createdAt": "2026-09-11T20:48:14.780883Z",
+        "updatedAt": "2026-09-11T20:48:14.780883Z"
       }
     ],
     "backgrounds": [],
@@ -6920,6 +6920,7 @@
         "createdAt": "2026-09-11T20:31:55.986385Z",
         "updatedAt": "2026-09-11T20:31:55.986385Z"
       }
-    ]
+    ],
+    "views": []
   }
 }
